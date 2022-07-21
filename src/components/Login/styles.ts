@@ -4,6 +4,12 @@ export const Container = styled.main`
 margin-top: 200px;
 display: flex;
 
+::-webkit-scrollbar {
+display: none;
+}
+-ms-overflow-style: none; /* IE and Edge */
+scrollbar-width: none; /* Firefox */
+
 .SubmitButton{
     width: 300px;
     display: flex;

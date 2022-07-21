@@ -9,7 +9,7 @@ export interface CardProps {
     currentClass?: number;
     globalCourse?: any;
     name?: string;
-    showlvl?: boolean;
+    profilecard?: boolean;
     lvl?: string;
     exp?: string;
     lvlprogress?: any;

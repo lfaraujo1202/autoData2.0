@@ -6,24 +6,24 @@ import type { CardProps } from "../Card/Card";
 import axios from 'axios';
 
 export function ThreeCompGrid() {
-
+    
     const [progress, setProgress] = useState<CardProps[]>([]);
     const [currentClass, setcurrentClass] = useState<CardProps[]>([]);
     const [profileData, setProfileData] = useState<any | null>([])
 
     const getCoursesProgress = async () => {
         var userId = sessionStorage.getItem("userId");
-        const res = await axios.get(`http://localhost:3000/user/checkId/${userId}`);
+        const res = await axios.get(`user/checkId/${userId}`);
         setProgress(res.data.user.progress)
         setcurrentClass(res.data.user.currentClass)
         setProfileData(res.data.user)
     }
 
     useEffect(() => {
+        var userToken = sessionStorage.getItem("userToken");
         getCoursesProgress()
     }, []);
 
-    console.log(Number(currentClass))
     return (
     <Container>
         <div className="infoBox">
@@ -54,7 +54,7 @@ export function ThreeCompGrid() {
                 description={"Parabés, você está na reta final do curso"}
                 courseimg={"profile"}
                 textUnderBar={"Level: " + profileData.level}
-                showlvl={false}
+                profilecard={false}
                 lvl= {profileData.level}
                 exp= {profileData.XP}
                 buttonName={"Mais informações"}

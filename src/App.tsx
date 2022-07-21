@@ -4,6 +4,7 @@ import { Home } from "./Pages/Home";
 import { PageLogin } from "./Pages/Login";
 import { useState } from "react";
 import { CourseContext } from '../src/components/Card';
+import axios from 'axios';
 
 import {
   BrowserRouter as Router,
@@ -11,7 +12,14 @@ import {
   Route,
 } from "react-router-dom";
 
+var userToken = "Bearer " + sessionStorage.getItem("userToken");
+axios.defaults.headers.common['Authorization'] = userToken;
 
+const instance = axios.create({
+  baseURL: 'http://localhost:3000/'
+});
+
+axios.defaults.baseURL = 'http://localhost:3000/';
 
 export function App() {
 

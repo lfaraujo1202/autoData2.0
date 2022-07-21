@@ -5,9 +5,9 @@ import { ThreeCompGrid } from "../components/ThreeCompGrid";
 export function Home() {
     return (
       <>
+      <GlobalStytle />
         <Header />
         <ThreeCompGrid />
-        <GlobalStytle />
       </>
     )
   }

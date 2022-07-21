@@ -8,48 +8,46 @@ import { useState } from "react";
 import axios from "axios";
 import React from 'react';
 import { useHistory } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Login() {
-
+    const notifywrongpass = () => toast.error("Acesso não autorizado! Verique os dados e tente novamente.");
     const [lodingLogin, setLoadingLogin] = useState(false);
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [value, setValue] = React.useState('');
     const history = useHistory();
-
+    
     const handleChange = (event : any) => {
         setValue(event.target.value);
       };
-
-      
+     
     const handleSubmit = async (event : any) => {
         event.preventDefault();
-
+        
         console.log(email)
         console.log(pass)
         try {
         //   setLoadingLogin(true)
           const post = await axios.post(
-            'http://localhost:3000/user/login',
+            'user/login',
             {
               email: email,
               password: pass,
             }
           );
           const data = post.data;
+          sessionStorage.setItem("userToken", data.token);
           
           if (data.msg = 'Autenticação realizada com sucesso') {
-            console.log("resposta do login: ", data);
             sessionStorage.setItem("userId", data.id);
             history.push("/home");
           }
 
-        //   setLoadingLogin(false);
         } catch (err) {
             console.log("falha do login: ", err, email, pass)
-            window.alert(
-              "Acesso não autorizado! Verique os dados e tente novamente."
-            );
+            notifywrongpass()
         };
     }
 
@@ -96,11 +94,9 @@ export function Login() {
                         <i className="fa-solid fa-eye"></i>   
                     </label>
             
-                    {/* <Link to={`/home`}> */}
-                        <div className="SubmitButton">
-                            <input type="submit" value="Log in"/>
-                        </div>
-                    {/* </Link> */}
+                    <div className="SubmitButton">
+                        <input type="submit" value="Log in"/>
+                    </div>
                 </form>
             </div>
         </main>
@@ -109,6 +105,7 @@ export function Login() {
             <img src={mobile} alt="Mobile"/>
             <div className="circle"></div>
         </section>
+        <ToastContainer />
     </Container>
     )
 }

@@ -17,6 +17,10 @@ export const Container = styled.div<CardProps>`
         margin: 12px;
     }
 
+    .badges{
+        width: 20px;
+    }
+
     .icon {
         width: 120px;
         height: 120px; 
@@ -198,6 +202,12 @@ export const Container = styled.div<CardProps>`
         background-color: var(--white);
         border-radius: 20px;
         margin-top:50px;
+    }
+
+    #badges {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
     }
 
     #myBar {

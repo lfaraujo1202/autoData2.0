@@ -14,16 +14,11 @@ import { CourseContext } from '../Card';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Stack from '@mui/material/Stack';
-import { dark } from '@mui/material/styles/createPalette';
-
 const steps = ['Aula 1', 'Aula 2', 'Aula 3', 'Aula 4', 'Aula 5'];
 
 const theme = createTheme({
   palette: {
     mode: "dark",
-
-    
   }
 })
 
@@ -42,7 +37,7 @@ export function HorizontalLinearStepper() {
 
     const getCoursesProgress = async () => {
       var userId = sessionStorage.getItem("userId");
-      const res = await axios.get(`http://localhost:3000/user/checkId/${userId}`);
+      const res = await axios.get(`/user/checkId/${userId}`);
       setUser(res.data.user)
 
       setGlobalXP(res.data.user.XP)
@@ -60,43 +55,45 @@ export function HorizontalLinearStepper() {
       const num = progress*20
       let Progress = num.toString()
       let postProgress = Progress + "%"
-      
-      setGlobalXP((state : any) => (Number(state) + 20))
 
-      console.log(globalXP)
-      console.log(globalLvl)
+      setGlobalXP((state : any) => (Number(state) + 20))
 
       if (((Number(globalLvl) + 1) * 100) <= globalXP+20) {
         setGlobalLvl((state : any) => (Number(state) + 1))
       }
 
       if (globalXP/(Number(globalLvl)) == 100) {
-        console.log("lvl up")
         notifylvlup(globalLvl)
       }
-
+      
+      const handleGlobalCourse = () => {
       switch (courseCycle.courseCycle) {
         case "HTML":
-          setGlobalCourse("1");
-          break;
+          return ("1");
         case "CSS3":
-          setGlobalCourse("2");
-          break;
+          return ("2");
         case "Java Script":
-          setGlobalCourse("3");
-          break;
+          return ("3");
         case "React":
-          setGlobalCourse("4");
-          break;
+          return ("4");
         default:
-          setGlobalCourse("5");
+          return ("5"); 
+      }}
+
+      const handleBadges = () => {
+        if (Number(Progress)/20 == 5) {
+          console.log(("badge" + handleGlobalCourse()))
+          return (("badge" + handleGlobalCourse()))
+        } else {
+          return ("-")
+        }
       }
 
       try {
       //   setLoadingLogin(true)
         // console.log(globalCourse)
-        const post = await axios.patch(`http://localhost:3000/user/update/${userId}/${courseId}`,{progress: postProgress});
-        const postCurrentClass = await axios.patch(`http://localhost:3000/user/update/${userId}`,{currentClass: globalCourse, XP: globalXP.toString(), level: globalLvl.toString()});
+        const post = await axios.patch(`/user/update/${userId}/${courseId}`,{progress: postProgress, badge: handleBadges()});
+        const postCurrentClass = await axios.patch(`/user/update/${userId}`,{currentClass: handleGlobalCourse(), XP: globalXP.toString(), level: globalLvl.toString()});
         const data = post.data
         const data2 = postCurrentClass.data
         // console.log(data)
@@ -134,7 +131,6 @@ export function HorizontalLinearStepper() {
 
       handleProgress((activeStep + 1))
       
-
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
       setSkipped(newSkipped);
     };
