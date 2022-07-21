@@ -3,7 +3,6 @@ import Social1 from '../../assets/linkedin.png'
 import Social2 from '../../assets/google.png'
 import Social3 from '../../assets/facebook.png'
 import mobile from '../../assets/mobile.svg'
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import React from 'react';
@@ -23,6 +22,10 @@ export function Login() {
         setValue(event.target.value);
       };
      
+    const handleCreate = async () => {
+        history.push("/create");
+    }
+
     const handleSubmit = async (event : any) => {
         event.preventDefault();
         
@@ -96,6 +99,7 @@ export function Login() {
             
                     <div className="SubmitButton">
                         <input type="submit" value="Log in"/>
+                        <button type="button" value="Create" onClick={handleCreate}>Novo Usuário</button>
                     </div>
                 </form>
             </div>

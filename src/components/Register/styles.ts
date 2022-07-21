@@ -117,6 +117,8 @@ main form label span {
     margin-top: 2rem;
 }
 
+
+
 main form input[type="submit"] {
     cursor: pointer;
     width: 50%;
