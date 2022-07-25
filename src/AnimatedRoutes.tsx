@@ -13,7 +13,6 @@ import {AnimatePresence} from 'framer-motion'
 // @ts-ignore
 const PrivateRoute = ({ children, redirectTo }) => {
     const isAuthenticated = sessionStorage.getItem('userToken') !== null;
-    console.log("isAuth: ", isAuthenticated);
     return isAuthenticated ? children : <Navigate to={redirectTo}/>
   }
 

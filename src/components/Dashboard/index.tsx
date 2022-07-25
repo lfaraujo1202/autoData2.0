@@ -24,17 +24,16 @@ export function Dashboard() {
         <Container>
             {user.map(props => {
                 return (
-                    <>
-                        <Card 
-                            title={props.title} 
-                            classname={props.classname} 
-                            progress={props.progress}
-                            description={props.description}
-                            courseimg={props.courseimg}
-                            buttonName={"Iniciar Quest"}
-                            textUnderBar={"Quest Level:"}
-                        />
-                    </>
+                    <Card 
+                        key={props._id}
+                        title={props.title} 
+                        classname={props.classname} 
+                        progress={props.progress}
+                        description={props.description}
+                        courseimg={props.courseimg}
+                        buttonName={"Iniciar Quest"}
+                        textUnderBar={"Quest Level:"}
+                    />
                 );
             })}
         </Container>

@@ -8,6 +8,20 @@ export const Container = styled.main`
         height: 100vh;
         background: var(--dark-purple); 
     }
+    
+    a{
+        text-decoration: none;
+        color: var(--violet-neon);
+    }
+
+    
+    button {
+        background: transparent;
+        color: var(--violet-neon);
+        font-weight: bold;
+        font-size: 1.1rem;
+        font-family: 'Baloo 2', sans-serif;
+    }
 
     .contentInfo {
         display: flex;
@@ -16,6 +30,12 @@ export const Container = styled.main`
         justify-content: center;
         padding: 3rem 5rem;
         background: var(--dark-purple);
+    }
+
+    .contentInfo img {
+        width: 10%;
+        cursor: pointer;
+        padding-top: 0.5rem;
     }
 
     .formContent {

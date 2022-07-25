@@ -11,29 +11,29 @@ export function InitialPage() {
     <Container banner={bannerImg}>
         <div className="bannerTop">
             <div className="contentBanner">
-                <h1>Lorem Ipsum Dolor</h1>
+                <h1>Hello World!</h1>
                 <button><Link to='/login'>Comece já</Link></button>
             </div>
         </div>
 
         <div className="contentInfo">
             <div className="textDescription">
-                <h3>Lorem Ipsum</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste eligendi impedit dolores facere nihil culpa praesentium! Praesentium, vel veniam. Eius debitis itaque ducimus exercitationem dolore iusto laborum et neque! Corporis.</p>
+                <h3>Comece a programar do zero</h3>
+                <p>Plataforma para aprendizado de programação através de vídeos rápidos e dinâmicos. Aprenda com uma metodologia gamificada desenvolvida por experts do mercado.</p>
                 <img src={videoStartImg} alt="" />
             </div>
 
             <div className="iconsContent">
                 <div className="iconsInfoLeft">
                     <img src={ico1Img} alt="Icone" />
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <h3>Aprenda React</h3>
+                    <p>Framework moderno e utilizado por grandes empresas.</p>
                 </div>
 
                 <div className="iconsInfoRight">
                     <img src={ico2Img} alt="Icone" />
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <h3>Aprenda Back-End</h3>
+                    <p>Descubra o poder do Node para criar API's modernas.</p>
                 </div>
             </div>
 

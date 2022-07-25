@@ -45,7 +45,21 @@ export const Content = styled.div`
         background: var(--purple);
     }
 
-    .linkref {
+    .lactive-class {
+        color: var(--lightpurple);
+        text-decoration: none;
+        font-size: 1.1rem;
+        transform: scaleX(0);
+        transition: all .3s ease-in-out;
+        font-weight: 900;
+    }
+
+    .lactive-class:hover {
+        color: var(--lightpurple);
+        font-weight: 900;
+    }
+
+    .not-active-class {
         color: var(--white);
         text-decoration: none;
         font-size: 1.1rem;
@@ -53,7 +67,7 @@ export const Content = styled.div`
         transition: all .3s ease-in-out;
     }
 
-    .linkref:hover {
+    .not-active-class:hover {
         color: var(--lightpurple);
         font-weight: 900;
     }
@@ -67,6 +81,7 @@ export const Content = styled.div`
 
     .nav-menu li {
         list-style: none;
+        font-family: 'Baloo 2', sans-serif;
     }
 
 
@@ -150,6 +165,10 @@ export const Content = styled.div`
  
         .nav-item {
             margin: 16px 0;
+        }
+
+        .nav-menu li a {
+            font-size: 1.5rem;
         }
 
         .nav-menu.menuOpen {

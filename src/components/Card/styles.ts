@@ -24,7 +24,6 @@ export const Container = styled.div<CardProps>`
     .icon {
         width: 120px;
         height: 120px;
-
     }
 
     .progress {
@@ -143,6 +142,7 @@ export const Container = styled.div<CardProps>`
     }
 
     .card:before{
+        display: ${props => props.homeCard === false ? 'block' : 'none'};
         content: '';
         position: absolute;
         width: 50px;
@@ -152,19 +152,18 @@ export const Container = styled.div<CardProps>`
         background: transparent;
         border-top-right-radius: 22px;
         box-shadow: 0px -22px 0 0 transparent;
-        display: block;
-        
     }
 
     .card:hover::before
     {
-        display: block;
+        display: ${props => props.homeCard === false ? 'block' : 'none'};
         transition: all 0.2s ease;
         box-shadow: 0px -22px 0 0 var(--background);
         background: transparent;
     }
 
     .card:after{
+        display: ${props => props.homeCard === false ? 'block' : 'none'};
         content: '';
         position: absolute;
         width: 50px;
@@ -174,12 +173,11 @@ export const Container = styled.div<CardProps>`
         background: transparent;
         border-top-left-radius: 22px;
         box-shadow: 0px -22px 0 0 transparent;
-        display: block;
     }
 
     .card:hover::after
     {
-        display: block;
+        display: ${props => props.homeCard === false ? 'block' : 'none'};
         transition: all 0.2s ease;
         box-shadow: 0px -22px 0 0 var(--background);
         background: transparent;

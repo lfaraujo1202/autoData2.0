@@ -1,8 +1,11 @@
 import { url } from "inspector";
 import styled from "styled-components";
 
+type AvatarProps = {
+    avatar: string;
+}
 
-export const Container = styled.main`
+export const Container = styled.main<AvatarProps>`
     
     .containerForm {
         display: flex;
@@ -19,6 +22,18 @@ export const Container = styled.main`
         justify-content: center;
         padding: 3rem 5rem;
         background: var(--dark-purple);
+    }
+
+    .avatarArea img {
+        padding-left: 10px;
+        padding-top: 10px;
+        width: 60px;
+    
+        &:nth-child(${props => props.avatar}) {
+            /* box-shadow: 0px 10px 50px 0px #0ff; */
+            -webkit-filter: drop-shadow(0px 10px 50px 0px #0ff);
+            filter: drop-shadow(2px 2px 5px #0ff);
+        }
     }
 
     .contentInfo img {
@@ -106,7 +121,7 @@ export const Container = styled.main`
         border-radius: 8px;
     }
 
-    .temp {
+    .areaImputOne {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -170,7 +185,7 @@ export const Container = styled.main`
         text-decoration: none;
     }
 
-    .tempTwo {
+    .areaImputTwo {
         display: flex;
         flex-direction: row;
         align-content: center;
@@ -184,6 +199,7 @@ export const Container = styled.main`
         flex-direction: row;
         align-items: center;
         padding: 1rem 0;
+        margin-top: 1rem;
         cursor: pointer;
     }
 
@@ -193,12 +209,6 @@ export const Container = styled.main`
         font-family: 'Baloo 2', sans-serif;
         color: var(--green-neon);
     }
-
-    .avatarArea img {
-        width: 60px;
-        padding-left: 10px;
-    }
-
 
     .buttonArea input {
         background: var(--green);
@@ -258,9 +268,15 @@ export const Container = styled.main`
         }
 
 
-        .temp {
+        .areaImputOne {
             display: flex;
             flex-direction: column;
+        }
+
+        .areaImputTwo {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
         }
 
         .sideFormContainer {
@@ -295,8 +311,9 @@ export const Container = styled.main`
 
         .avatarArea {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
         }
+
 
         .servicesContent {
             width: 100%;

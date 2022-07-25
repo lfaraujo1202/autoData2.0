@@ -13,13 +13,6 @@ import AnimatedRoutes from "./AnimatedRoutes";
 var userToken = "Bearer " + sessionStorage.getItem("userToken");
 axios.defaults.headers.common['authorization'] = userToken;
 
-// @ts-ignore
-const PrivateRoute = ({ children, redirectTo }) => {
-  const isAuthenticated = sessionStorage.getItem('userToken') !== null;
-  console.log("isAuth: ", isAuthenticated);
-  return isAuthenticated ? children : <Navigate to={redirectTo}/>
-}
-
 const instance = axios.create({
   baseURL: 'https://apiautodata.herokuapp.com/'
 });
@@ -27,7 +20,6 @@ const instance = axios.create({
 axios.defaults.baseURL = 'https://apiautodata.herokuapp.com/';
 
 function App() {
-  const location = useLocation();
   const [courseCycle, setCourseCycle] = useState('')
 
   return (

@@ -16,6 +16,11 @@ export const Container = styled.main<bannerImg>`
         height: 500px; 
     }
 
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
     .contentBanner {
         display: flex;
         flex-direction: column;
@@ -42,10 +47,10 @@ export const Container = styled.main<bannerImg>`
         align-content: center;
         max-width: 1000px;
         margin: 0 auto;
-        padding: 2.2rem 2rem;
+        padding: 3rem 2rem;
 
         h3 {
-            color: var(--green-neon);
+            color: var(--lightpurple);
             font-weight: bold;
             font-size: 1.7rem;
         }
@@ -70,6 +75,7 @@ export const Container = styled.main<bannerImg>`
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
+        margin-bottom: 2rem;
 
         img {
             width: 15%;
@@ -81,6 +87,37 @@ export const Container = styled.main<bannerImg>`
         .iconsContent {
             display: flex;
             flex-direction: column;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .textDescription h3 {
+            font-size: 2rem;
+        }
+
+        .textDescription p {
+            font-size: 1.4rem;
+        }
+
+        .iconsContent {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .iconsInfoLeft, .iconsInfoRight {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .iconsInfoLeft h3, .iconsInfoRight h3 {
+            font-size: 2rem;
+        }
+
+        .iconsInfoLeft p, .iconsInfoRight p {
+            font-size: 1.4rem;
+            text-align: center;
         }
     }
 `;

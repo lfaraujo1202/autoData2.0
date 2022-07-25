@@ -1,14 +1,17 @@
 import { Container } from "./styles";
 import { Card } from "../Card";
 import { InfoBox } from "../InfoBox";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import type { CardProps } from "../Card/Card";
 import axios from 'axios';
 import { Skeleton } from "@mui/material";
 import { CardProfile } from "../CardProfile";
+import bgHome from '../../assets/bg-home.png';
+import { CourseContext } from '../Card';
 
 export function ThreeCompGrid() {
-    
+
+    const {courseCycle, setCourseCycle} = useContext(CourseContext)
     const [progress, setProgress] = useState<CardProps[]>([]);
     const [currentClass, setcurrentClass] = useState<CardProps[]>([]);
     const [profileData, setProfileData] = useState<any | null>([]);
@@ -20,7 +23,8 @@ export function ThreeCompGrid() {
         setProgress(res.data.user.progress)
         setIsLoading(true)
         setcurrentClass(res.data.user.currentClass)
-        setProfileData(res.data.user)
+        setCourseCycle(res.data.user.progress[Number(res.data.user.currentClass)-1].classname)
+        setProfileData(res.data.user)   
     }
 
     useEffect(() => {
@@ -29,29 +33,28 @@ export function ThreeCompGrid() {
     }, []);
 
     return (
-    <Container>
+    <Container bghome={bgHome}>
         <div className="mainContainer">
             <div className="infoBox">
-            <InfoBox />
+            <InfoBox classname={profileData.name}/>
             </div>
             <div className = 'asside'>
                 <div className = 'card1'>
                     <>
-
                     {isLoading ? (
                         progress.slice(Number(currentClass) - 1, Number(currentClass)).map(props => {
                             return (
-                                <>
-                                    <Card 
-                                        title={props.title} 
-                                        classname={props.classname} 
-                                        progress={props.progress}
-                                        description={props.description}
-                                        courseimg={props.courseimg}
-                                        buttonName={"Continuar assistindo"}
-                                        textUnderBar={"Quest Level:"}
-                                    />
-                                </>
+                                <Card
+                                    key={props._id}
+                                    title={props.title} 
+                                    classname={props.classname} 
+                                    progress={props.progress}
+                                    description={props.description}
+                                    courseimg={props.courseimg}
+                                    buttonName={"CONTINUAR TREINAMENTO"}
+                                    textUnderBar={"Quest Level:"}
+                                    homeCard={(true)}
+                                />
                             );
                         })) : (
                             <div className = 'skeleton'>
@@ -59,24 +62,23 @@ export function ThreeCompGrid() {
                                 <Skeleton variant="text" width={120} height={40} style={{ marginTop: 20, marginLeft: 0}} />
                                 <Skeleton variant="text" width={60} height={40} style={{ marginTop: 5, marginLeft: 0}} />
                                 <Skeleton variant="text" width={300} height={40} style={{ marginTop: 5, marginLeft: 0}} />
-                                <button className = 'skeletonButton'>CONTINUAR ASSISTINDO</button>
-
+                                <button className = 'skeletonButton'>CONTINUAR TREINAMENTO</button>
                             </div>
                         )}
                 </>
-
                 </div>
+                
                 <div className = 'card2'>
-                    <CardProfile 
-                    classname={profileData.name} 
-                    progress= {profileData.XP + " exp"}
-                    description={"Parabés, você está na reta final do curso"}
-                    courseimg={"profile"}
-                    textUnderBar={"Level: " + profileData.level}
-                    profilecard={false}
-                    lvl= {profileData.level}
-                    exp= {profileData.XP}
-                    buttonName={"Mais informações"}
+                    <CardProfile
+                        classname={profileData.name} 
+                        progress= {profileData.XP + " exp"}
+                        description={"Continue assim recruta."}
+                        courseimg={profileData.Img}
+                        textUnderBar={"Level: " + profileData.level}
+                        profilecard={false}
+                        lvl= {profileData.level}
+                        exp= {profileData.XP}
+                        buttonName={"Mais informações"}
                     />
                 </div>
             </div>

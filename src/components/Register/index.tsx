@@ -1,12 +1,19 @@
 import { Container } from "./styles";
 import { useForm, SubmitHandler } from "react-hook-form";
-import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
+import axios from "axios";
+import profile from "../../assets/profile.png"
+import profile2 from "../../assets/profile2.png"
+import profile3 from "../../assets/profile3.png"
+import profile4 from "../../assets/profile4.png"
+
 import bgSideImg from '../../assets/img-side-form.png';
 import arrowIco from '../../assets/arrow.svg';
-import avatarIco from '../../assets/avatar.png';
-import { motion } from 'framer-motion'
 
 interface IFormInput {
   name: string;
@@ -16,35 +23,53 @@ interface IFormInput {
 
 export function Register() {
   const notifysuccess = () => toast.success("Acesso criado com sucesso");
+  const notifywrongpass = () => toast.error("Falha ao criar usuário!");
   const { register, handleSubmit } = useForm<IFormInput>();
+  const navigate = useNavigate();
+  const[avatar, SetAvatar] = useState("1");
 
-  const onSubmit: SubmitHandler<IFormInput> = data => {
-    axios.post(
-            'user/create',
-            {
-                name: data.name,
-                email: data.email,
-                password: data.password,
-                Img: "profile",
-                XP: 0,
-                level: 0,
-                currentClass: "1"
-            }
-    );
-    notifysuccess()
+  const handleAvatar = async (avatar : string) => {
+      SetAvatar(avatar)
+  }
+
+  const onSubmit: SubmitHandler<IFormInput> = async data => {
+      try {
+      const post = await axios.post(
+              'user/create',
+              {
+                  name: data.name,
+                  email: data.email,
+                  password: data.password,
+                  Img: "profile" + (Number(avatar)-1),
+                  XP: 0,
+                  level: 0,
+                  currentClass: "1"
+              }
+      );
+
+      const postdata = post.data;
+      sessionStorage.setItem("userToken", postdata.token);
+      sessionStorage.setItem("userId", postdata.user._id);
+      navigate("/home")
+      notifysuccess()
+
+    } catch (err) {
+      console.log("falha ao criar usuário: ", err)
+      notifywrongpass()
     }
+  }
 
 //   console.log(data);
   
   return (
-    <Container>
+    <Container avatar={avatar}>
       <div className="containerForm">
         <div className="contentInfo" style={{ backgroundImage:`url(${bgSideImg})`,backgroundRepeat:"no-repeat"}}>     
           <div className="contentText">
-            <h3>Lorem ipsum<br/> dolor sit amet.</h3>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis finibus sapien, ac interdum massa tincidunt ut. </span>
+            <h3>Embarque nessa jornada!<br/> Sua nave está aguardando!</h3>
+            <span>Acesse a plataforma de embarque com as suas credenciais. Se ainda não tiver uma credencial, aliste-se imediatamente.</span>
           </div>
-          <button type="button" value="Create"><Link to='/login'>Voltar ao login</Link></button>
+          <button type="button" value="Create"><Link to='/login'>Voltar para o Embarque</Link></button>
           <img src={arrowIco}/>
         </div>
 
@@ -56,12 +81,12 @@ export function Register() {
         >
           <div className="sideFormContainer">
             <div className="contentTextForm">
-              <h3>Crie seu cadastro</h3>
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span>
+              <h3>Registre-se no alistamento</h3>
+              <span>Não perca tempo, ou ficará de fora do próximo embarque. </span>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="temp">
+              <div className="areaImputOne">
                 <div className="nameArea">
                   <span>Nome:</span>
                   <input {...register("name", { required: true, maxLength: 20 })} />
@@ -75,18 +100,18 @@ export function Register() {
 
               <div className="emailArea">
                 <span>E-mail:</span>
-                <input {...register("email", { required: true, maxLength: 30 })} />
+                <input type="email"{...register("email", { required: true, maxLength: 30 })} />
               </div>
 
-              <div className="temp">
+              <div className="areaImputOne">
                 <div className="passwordArea">
                   <span>Senha:</span>
-                  <input {...register("password", { required: true, maxLength: 20 })} />
+                  <input type="password" {...register("password", { required: true, maxLength: 20 })} />
                 </div>
 
                 <div className="repeatArea">
                   <span>Repita sua senha:</span>
-                  <input {...register("password", { required: true, maxLength: 20 })} />
+                  <input type="password" {...register("password", { required: true, maxLength: 20 })} />
                 </div>
               </div>
 
@@ -94,11 +119,15 @@ export function Register() {
                 <span>Ao se registrar, você aceita nossos <a href="">termos de uso</a> e a nossa <a href="">política de privacidade</a>.</span>
               </div>
               
-              <div className="tempTwo">
+              <div className="areaImputTwo">
                 <div className="avatarArea">
-                    <span>Escolha seu avatar</span>
-                    <img src={avatarIco} />
+                    <span>Avatar: </span>
+                    <img onClick={() => handleAvatar("2")} src={profile} />
+                    <img onClick={() => handleAvatar("3")} src={profile2} />
+                    <img onClick={() => handleAvatar("4")} src={profile3} />
+                    <img onClick={() => handleAvatar("5")} src={profile4} />
                 </div>
+
                 <div className="buttonArea">
                   <input type="submit" value="Enviar" />
                 </div>

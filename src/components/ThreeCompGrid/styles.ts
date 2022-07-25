@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
-export const Container = styled.main`
+interface bgHome {
+    bghome?: string;
+}
+
+export const Container = styled.main<bgHome>`
     width: 100%;
     padding-top: 50px;
     display: flex;
     justify-content: center;
+    background: url(${props => props.bghome}) center center fixed;
 
     .mainContainer{     
         display: flex;

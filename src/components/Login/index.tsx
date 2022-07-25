@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom';
 import bgSideImg from '../../assets/img-side-form.png';
 import { useNavigate } from 'react-router-dom';
 import arrowIco from '../../assets/arrow.svg';
-import avatarIco from '../../assets/avatar.png';
+import avatarIco from '../../assets/profile.png';
 import { motion } from 'framer-motion'
 
 export function Login() {
@@ -22,14 +22,10 @@ export function Login() {
     const handleChange = (event : any) => {
         setValue(event.target.value);
       };
-     
 
     const handleSubmit = async (event : any) => {
         event.preventDefault();
-        console.log(email)
-        console.log(pass)
         try {
-        //   setLoadingLogin(true)
           const post = await axios.post(
             'user/login',
             {
@@ -64,9 +60,11 @@ export function Login() {
         <div className="containerForm">
             <div className="contentInfo" style={{ backgroundImage:`url(${bgSideImg})`,backgroundRepeat:"no-repeat"}}>     
                 <div className="contentText">
-                    <h3>Lorem ipsum<br/> dolor sit amet.</h3>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis finibus sapien, ac interdum massa tincidunt ut. </span>
+                    <h3>Embarque nessa jornada!<br/> Sua nave está aguardando!</h3>
+                    <span>Acesse a plataforma de embarque com as suas credenciais. Se ainda não tiver uma credencial, aliste-se imediatamente.</span>
                 </div>
+                <button type="button" value="Create"><Link to='/'>Voltar para Espera</Link></button>
+                <img src={arrowIco}/>
                 
             </div>
 
@@ -77,8 +75,6 @@ export function Login() {
                 animate={{transform: "rotateY(0deg)"}}
                 transition={{type: 'Inertia' }}
                 exit={{transform: "rotateY(90deg)"}}
-                        // transition={{type: 'spring', stiffness: 500}}
-                        // exit={{x: window.innerWidth}}
                 >
 
                     <div className="sideFormContainer">
@@ -100,7 +96,7 @@ export function Login() {
                     
                             <div className="SubmitButton">
                                 <input type="submit" value="Log in"/>
-                                <button type="button" value="Create"> <Link to='/create' className = "newUser">Novo Usuário?</Link> </button>
+                                <button type="button" value="Create"> <Link to='/create' className = "newUser">Novo Recruta?</Link> </button>
                             </div>
                         </form>
                     </div>

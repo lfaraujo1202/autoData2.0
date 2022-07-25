@@ -1,4 +1,5 @@
 export interface CardProps {
+    _id?: string;
     classname?: string;
     title?: string;
     progress?: string;
@@ -13,4 +14,5 @@ export interface CardProps {
     lvl?: string;
     exp?: string;
     lvlprogress?: any;
+    homeCard?: any;
 }

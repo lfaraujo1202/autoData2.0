@@ -111,21 +111,6 @@ export const Container = styled.div<CardProps>`
         position: absolute;
     }
 
-    /* Show card name in background */
-
-    /* .card:hover .icon::after {
-        content: '${props => props.classname}';
-        position: absolute;
-        font-size: 3rem;
-        opacity: 0.03;
-        margin-left: -9%;
-        margin-top: 100px;
-        font-family: 'Baloo 2', Arial, Helvetica, cursive;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-align: center;
-    } */
-
     h4 {
         display: none;
     }
@@ -142,58 +127,57 @@ export const Container = styled.div<CardProps>`
 
     .card:hover img{
         width: 100px;
-        height: 100px; 
+        height: 110px; 
         transform-style: preserve-3d;
         transform: translate3d(0px,-60%,0px);
         transition: 0.2s;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
-        /* box-shadow:0px 0px 0px 10px var(--background) inset;
-        border: 10px solid var(--background); */
     }
 
     .card:before{
         content: '';
         position: absolute;
-        width: 50px;
-        height: 50px;
-        margin-right: 148px;
-        margin-top: -17px;
-        background: transparent;
-        border-top-right-radius: 22px;
-        box-shadow: 0px -22px 0 0 transparent;
-        display: block;
-        
+        width: 0;
+        height: 0;
+        border-top: 30px solid transparent;
+        border-left: 20px solid transparent;
+        margin-left: -115px;
+        margin-top: -15px;
     }
 
     .card:hover::before
     {
-        display: block;
+        width: 0;
+        height: 0;
+        border-top: 30px solid var(--background);
+        border-left: 20px solid transparent;
+        margin-left: -114px;
+        margin-top: -18px;
         transition: all 0.2s ease;
-        box-shadow: 0px -22px 0 0 var(--background);
-        background: transparent;
     }
 
     .card:after{
         content: '';
         position: absolute;
-        width: 50px;
-        height: 50px;
-        margin-right: -148px;
-        margin-top: -17px;
-        background: transparent;
-        border-top-left-radius: 22px;
-        box-shadow: 0px -22px 0 0 transparent;
-        display: block;
+        width: 0;
+        height: 0;
+        border-top: 30px solid transparent;
+        border-right: 20px solid transparent;
+        margin-right: -115px;
+        margin-top: -15px;
     }
 
     .card:hover::after
     {
-        display: block;
+        width: 0;
+        height: 0;
+        border-top: 30px solid var(--background);
+        border-right: 20px solid transparent;
+        margin-right: -114px;
+        margin-top: -18px;
         transition: all 0.2s ease;
-        box-shadow: 0px -22px 0 0 var(--background);
-        background: transparent;
     }
 
 
@@ -223,8 +207,16 @@ export const Container = styled.div<CardProps>`
     }
 
     #badges img {
-        width: 25px;
-        height: 25px; 
+        width: 45px;
+        height: 45px; 
+    }
+
+    .card:hover #myProgress {
+        margin: 1.3rem;
+    }
+
+    .card:hover .progress {
+        margin: 0.1rem;
     }
 
     #myBar {

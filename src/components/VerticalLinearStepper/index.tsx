@@ -13,6 +13,7 @@ import { useContext } from 'react';
 import { CourseContext } from '../Card';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const steps = ['Aula 1', 'Aula 2', 'Aula 3', 'Aula 4', 'Aula 5'];
 
@@ -30,6 +31,7 @@ export function VerticalLinearStepper() {
     const [globalCourse, setGlobalCourse] = useState<any | null>(1);
     const [globalXP, setGlobalXP] = useState<any | null>(0);
     const [globalLvl, setGlobalLvl] = useState<any | null>(1);
+    const [isLoading, setIsLoading] = useState(false);
 
     const courseCycle = useContext(CourseContext)
     const notifyadvance = (level : number) => toast("+10 exp - A dificuldade da quest aumentou para o level: " + level);
@@ -39,9 +41,9 @@ export function VerticalLinearStepper() {
       var userId = sessionStorage.getItem("userId");
       const res = await axios.get(`https://apiautodata.herokuapp.com/user/checkId/${userId}`);
       setUser(res.data.user)
-
       setGlobalXP(res.data.user.XP)
       setGlobalLvl(res.data.user.level)
+      setIsLoading(true);
       
       const filteredCourse = res.data.user.progress.filter((activeCycle : any) => {
         return activeCycle.classname === courseCycle.courseCycle;
@@ -161,6 +163,8 @@ export function VerticalLinearStepper() {
     };
     
     return (
+      <>
+      {isLoading ? ( 
       <ThemeProvider theme={theme}>
       <Box sx={{ width: '40%' }}>
         <Stepper activeStep={activeStep} orientation="vertical">
@@ -211,5 +215,13 @@ export function VerticalLinearStepper() {
         )}
       </Box>
       </ThemeProvider>
+      ) : (
+        <>
+          <Box sx={{ display: 'flex' }}>
+            <CircularProgress />
+          </Box>
+        </>
+      )}
+      </>
       );
   }

@@ -13,6 +13,9 @@ import { useContext } from 'react';
 import { CourseContext } from '../Card';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LinearProgress from '@mui/material/LinearProgress';
+import styled from 'styled-components';
+import { Container } from './styles'
 
 const steps = ['Aula 1', 'Aula 2', 'Aula 3', 'Aula 4', 'Aula 5'];
 
@@ -27,9 +30,9 @@ export function HorizontalLinearStepper() {
     const [skipped, setSkipped] = React.useState(new Set<number>());
     const [user, setUser] = useState<any | null>();
     const [courseId, setCourseId] = useState<CardProps[]>([]);
-    const [globalCourse, setGlobalCourse] = useState<any | null>(1);
     const [globalXP, setGlobalXP] = useState<any | null>(0);
     const [globalLvl, setGlobalLvl] = useState<any | null>(1);
+    const [isLoading, setIsLoading] = useState(false);
 
     const courseCycle = useContext(CourseContext)
     const notifyadvance = (level : number) => toast("+10 exp - A dificuldade da quest aumentou para o level: " + level);
@@ -39,9 +42,9 @@ export function HorizontalLinearStepper() {
       var userId = sessionStorage.getItem("userId");
       const res = await axios.get(`https://apiautodata.herokuapp.com/user/checkId/${userId}`);
       setUser(res.data.user)
-
       setGlobalXP(res.data.user.XP)
       setGlobalLvl(res.data.user.level)
+      setIsLoading(true);
       
       const filteredCourse = res.data.user.progress.filter((activeCycle : any) => {
         return activeCycle.classname === courseCycle.courseCycle;
@@ -57,9 +60,6 @@ export function HorizontalLinearStepper() {
       let postProgress = Progress + "%"
 
       setGlobalXP((state : any) => (Number(state) + 20))
-
-      // console.log(globalXP)
-      // console.log(globalLvl)
 
       if (((Number(globalLvl) + 1) * 100) <= globalXP+20) {
         setGlobalLvl((state : any) => (Number(state) + 1))
@@ -93,16 +93,11 @@ export function HorizontalLinearStepper() {
       }
 
       try {
-      //   setLoadingLogin(true)
-        // console.log(globalCourse)
         const post = await axios.patch(`https://apiautodata.herokuapp.com/user/update/${userId}/${courseId}`,{progress: postProgress, badge: handleBadges()});
         const postCurrentClass = await axios.patch(`https://apiautodata.herokuapp.com/user/update/${userId}`,{currentClass: handleGlobalCourse(), XP: globalXP.toString(), level: globalLvl.toString()});
         const data = post.data
         const data2 = postCurrentClass.data
-        // console.log(data)
-        // console.log(data2)
 
-      //   setLoadingLogin(false);
       } catch (err) {
           console.log("falha do post de progress: ", err)
           window.alert(
@@ -161,6 +156,8 @@ export function HorizontalLinearStepper() {
     };
     
     return (
+      <>
+      {isLoading ? ( 
       <ThemeProvider theme={theme}>
       <Box sx={{ width: '40%' }}>
         <Stepper activeStep={activeStep}>
@@ -211,5 +208,16 @@ export function HorizontalLinearStepper() {
         )}
       </Box>
       </ThemeProvider>
+      ) :(
+        <Container>
+          <div className="loading">
+            <h3>Loading...</h3>
+            <Box sx={{ width: '100%' }}>
+              <LinearProgress color="secondary" />
+            </Box>
+          </div>
+        </Container>
+      )}
+      </>
       );
   }

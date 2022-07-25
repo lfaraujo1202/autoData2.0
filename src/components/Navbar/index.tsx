@@ -1,15 +1,27 @@
 import { Container, Content } from './styles';
 import logoImg from '../../assets/logo_text_white_1.png';
 import icoLogout from '../../assets/ico-logout.png';
-import user from '../../assets/avatar.png';
-import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { Link, NavLink } from "react-router-dom";
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export function Navbar () {
     const [active, setActive] = useState(false);
     const [activeProfile, setActiveProfile] = useState(false);
+    const [avatar, setAvatar] = useState("profile0");
+
     const navigate = useNavigate();
+
+    const getUserAvatar = async () => {
+        var userId = sessionStorage.getItem("userId");
+        const res = await axios.get(`user/checkId/${userId}`);
+        setAvatar(res.data.user.Img)
+    }
+
+    useEffect (() => {
+        getUserAvatar()
+    })
 
     const toggleMode = () => {
         setActive(!active)
@@ -50,13 +62,13 @@ export function Navbar () {
             <div className="containerMenu">
                 <ul className={active ? 'nav-menu menuOpen': 'nav-menu menuClosed'}>
                     <li className="nav-item">
-                        <Link to={`/home`}><button><span className="linkref">Início</span></button></Link>
+                        <NavLink to={`/home`} className={({ isActive }) => (isActive ? "lactive-class" : "not-active-class")}>Nave</NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link to={`/dashboard`}><button><span className="linkref">Quests</span></button></Link>
+                        <NavLink to={`/dashboard`} className={({ isActive }) => (isActive ? "lactive-class" : "not-active-class")}>Quests</NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link to={`/watch`}><button><span className="linkref">Aventura</span></button></Link>
+                        <NavLink to={`/watch`} className={({ isActive }) => (isActive ? "lactive-class" : "not-active-class")}>Treinamento</NavLink>
                     </li>
 
                 </ul>
@@ -64,7 +76,7 @@ export function Navbar () {
             
             <div className="containerProfile">
                 <div className={activeProfile ? 'profileArea ativoA' : 'profileArea'} onClick={toggleModeProfile} >
-                    <img src={user} alt="Imagem de usuario"/>
+                    <img src={require(`../../assets/${avatar}.png`)} alt="Imagem de usuario"/>
                 </div>
 
                 <div className={activeProfile ? 'menuProfile profileOpen'  : 'closed profileClosed'}>

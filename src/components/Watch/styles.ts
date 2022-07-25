@@ -5,5 +5,5 @@ export const Container = styled.main`
     display: flex;
     justify-content: center;
     align-items: center;
-    justify-content: center;
+    
 `;
