@@ -4,16 +4,19 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import type { CardProps } from "../Card/Card";
 import axios from 'axios';
-import Modal from 'react-modal';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export function Dashboard() {
     const [isNewCourseOpen, SetIsNewCourseOpen] = useState(false);
     const [user, setUser] = useState<CardProps[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const getCoursesProgress = async () => {
         var userId = sessionStorage.getItem("userId");
         const res = await axios.get(`https://apiautodata.herokuapp.com/user/checkId/${userId}`);
         setUser(res.data.user.progress)
+        setIsLoading(true)
     }
 
     useEffect(() => {
@@ -22,6 +25,8 @@ export function Dashboard() {
     
     return (
         <Container>
+            {isLoading ? (
+            <>
             {user.map(props => {
                 return (
                     <Card 
@@ -36,6 +41,12 @@ export function Dashboard() {
                     />
                 );
             })}
+            </>
+            ) : (
+                <Box sx={{ display: 'flex', justifyContent: "center", marginTop: "100px" }}>
+                    <CircularProgress />
+                </Box>
+            )}
         </Container>
     );
 }

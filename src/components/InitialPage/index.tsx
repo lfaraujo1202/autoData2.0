@@ -3,18 +3,56 @@ import videoStartImg from '../../assets/video-start.png';
 import ico1Img from '../../assets/ico1.svg';
 import ico2Img from '../../assets/ico2.svg';
 import { Container } from "./styles";
+import { StartButton } from "./styles";
+import { ButtonContainer } from "./styles";
+import { ButtonWrapper } from "./styles";
 import {Link} from 'react-router-dom';
+import { motion } from 'framer-motion'
+import { transform } from "framer-motion"
+import { useInView } from 'react-intersection-observer';
+import React, { useEffect, useState } from 'react';
 
 export function InitialPage() {
 
+    const { ref, inView } = useInView({
+        rootMargin: '-100px',
+    });
+
+    useEffect(() => {
+        console.log(inView);
+    }, [inView]);
+
+    
     return (
-    <Container banner={bannerImg}>
+        <>
+        <Container banner={bannerImg}>
+            
+        <motion.div
+            // exit={{height: '1000px'}}
+            // initial={{height: "50%"}}
+            // animate={{height: "100%"}}
+        >
+       
         <div className="bannerTop">
             <div className="contentBanner">
                 <h1>Hello World!</h1>
-                <button><Link to='/login'>Comece já</Link></button>
+                <ButtonContainer ref={ref}>
+                    <ButtonWrapper>
+                        <StartButton className={inView ? '' : 'corner'}>
+                            <Link to='/login'>
+                                {inView ? (
+									<> COMECE JÁ </>
+								) : (
+									<> START </>
+								)}
+                            </Link>
+                        </StartButton>
+                    </ButtonWrapper>
+                </ButtonContainer>
             </div>
         </div>
+
+        </motion.div>
 
         <div className="contentInfo">
             <div className="textDescription">
@@ -38,10 +76,9 @@ export function InitialPage() {
             </div>
 
         </div>
-
-        
-
         <footer></footer>
+    
     </Container>
+    </>
     )
 }

@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { motion } from 'framer-motion';
 
 interface bannerImg {
     banner?: any;
 }
 
 export const Container = styled.main<bannerImg>`
+
     background: var(--dark-purple);
 
     .bannerTop {
@@ -13,7 +15,7 @@ export const Container = styled.main<bannerImg>`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 500px; 
+        height: 500px;
     }
 
     a {
@@ -25,6 +27,7 @@ export const Container = styled.main<bannerImg>`
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
     
     h1 {
@@ -121,3 +124,54 @@ export const Container = styled.main<bannerImg>`
         }
     }
 `;
+
+export const ButtonContainer = styled.div`
+	position: relative;
+	display: flex;
+	height: 170px;
+`;
+
+export const ButtonWrapper = styled.div`
+	position: absolute;
+	height: 100vh;
+	width: 100%;
+	left: 0;
+	top: 0;
+`;
+
+export const StartButton = styled(motion.button)`
+	position: absolute;
+	width: 250px;
+	margin: 0 auto;
+	padding: 15px 20px;
+	bottom: calc(100vh - 100px);
+	right: 50%;
+	transform: translate(50%);
+	font-weight: 700;
+	font-size: 0.688rem;
+	line-height: 18px;
+	letter-spacing: 1.54px;
+	text-transform: uppercase;
+	border-radius: 25px;
+	border: none;
+	background-color: white;
+	color: var(--purple-neon);
+	cursor: pointer;
+	transition: all 0.4s ease-in;
+
+	&.corner {
+		position: fixed;
+		bottom: 5rem;
+		right: 4rem;
+		width: 64px;
+		height: 64px;
+		padding: 6px;
+		background-color: var(--green);
+		border-radius: 50%;
+	}
+
+	&:hover {
+		box-shadow: 0 0 9px 9px var(--background);
+		transition: box-shadow 0.3s ease-in;
+	}
+`

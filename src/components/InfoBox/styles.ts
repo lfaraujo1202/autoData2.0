@@ -7,7 +7,7 @@ export const Container = styled.main`
     flex-direction: column;
     justify-content: flex-start;
     background-color: var(--purple);
-    height: 86vh;
+    height: 88vh;
     padding: 60px;
 
     h1 {
@@ -37,6 +37,10 @@ export const Container = styled.main`
         display: flex;
         justify-content: center;
         opacity: 60%;
+    }
+
+    @media (max-width: 1500px) {
+        height: 52vh;
     }
 
     @media (max-width: 468px) {

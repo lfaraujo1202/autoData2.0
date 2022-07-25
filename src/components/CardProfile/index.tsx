@@ -86,7 +86,12 @@ export function CardProfile({progress = "0%", classname = "-", description = '-'
                                 }
                             })}
                         </div>
-                        <span className="currentclass"><strong>{textUnderBar}</strong> </span>    
+                        {isLoading ? (
+                        <span className="currentclass"><strong>{textUnderBar}</strong> </span>   
+                        ) : (
+                            <span className="progress">Caculando...</span>
+                        )}
+                         
                     </div>
                 </div>
             </div>

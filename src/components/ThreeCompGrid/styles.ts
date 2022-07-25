@@ -9,7 +9,11 @@ export const Container = styled.main<bgHome>`
     padding-top: 50px;
     display: flex;
     justify-content: center;
-    background: url(${props => props.bghome}) center center fixed;
+    background: url(${props => props.bghome}) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 
     .mainContainer{     
         display: flex;
@@ -59,12 +63,13 @@ export const Container = styled.main<bgHome>`
 
     .infoBox{
         margin-right: 10px;
+        height: auto;
     }
 
     @media (max-width: 1500px) {
         .mainContainer{     
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         justify-content: center;
         width: 55%;
 
@@ -88,7 +93,7 @@ export const Container = styled.main<bgHome>`
     @media (max-width: 1000px) {
         .mainContainer{     
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         justify-content: center;
         width: 85%;
 
@@ -112,7 +117,7 @@ export const Container = styled.main<bgHome>`
     @media (max-width: 750px) {
          .mainContainer{     
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
             justify-content: center;
             width: 80%;
 

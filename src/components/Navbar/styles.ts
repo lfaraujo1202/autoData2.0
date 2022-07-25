@@ -278,7 +278,7 @@ export const Content = styled.div`
         font-size: 1.1rem;
         color: var(--white);
         font-weight: 400;
-        transition: 0.5s;
+        
         display: flex;
         align-items: center;
     }
