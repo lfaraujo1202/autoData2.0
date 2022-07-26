@@ -36,7 +36,7 @@ export function HorizontalLinearStepper() {
 
     const courseCycle = useContext(CourseContext)
     
-    const notifyadvance = (level : number) => toast("+10 exp - A dificuldade da quest aumentou para o level: " + level);
+    const notifyadvance = (level : number) => toast("+20 exp - A dificuldade da quest aumentou para o level: " + level);
     const notifylvlup = (level : number) => toast.success("Parabéns, você alcançou o level: " + level);
 
     const getCoursesProgress = async () => {
