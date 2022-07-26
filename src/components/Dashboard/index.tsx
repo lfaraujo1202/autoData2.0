@@ -1,14 +1,14 @@
-import { Container } from "./styles";
-import { Card } from "../Card"
-import { useEffect, useState } from "react";
-import { api } from "../../services/api";
 import type { CardProps } from "../Card/Card";
+
 import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
+import { Container } from "./styles";
+import { Card } from "../Card"
+import { useEffect, useState } from "react";
+
 export function Dashboard() {
-    const [isNewCourseOpen, SetIsNewCourseOpen] = useState(false);
     const [user, setUser] = useState<CardProps[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 

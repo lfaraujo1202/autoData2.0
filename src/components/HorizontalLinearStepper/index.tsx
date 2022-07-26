@@ -35,6 +35,7 @@ export function HorizontalLinearStepper() {
     const [isLoading, setIsLoading] = useState(false);
 
     const courseCycle = useContext(CourseContext)
+    
     const notifyadvance = (level : number) => toast("+10 exp - A dificuldade da quest aumentou para o level: " + level);
     const notifylvlup = (level : number) => toast.success("Parabéns, você alcançou o level: " + level);
 
@@ -53,23 +54,17 @@ export function HorizontalLinearStepper() {
       setActiveStep((Number((filteredCourse[0].progress).replace("%", '')))/20)
     }
 
-    const handleProgress = async (progress : number) => {
-      var userId = sessionStorage.getItem("userId");
-      const num = progress*20
-      let Progress = num.toString()
-      let postProgress = Progress + "%"
+    const handleGlobalXP = (Increment : number) => {
+      setGlobalXP(globalXP + Increment)
+      return (globalXP + Increment)
+    }
 
-      setGlobalXP((state : any) => (Number(state) + 20))
+    const handleGlobaLvl = () => {
+      setGlobalLvl(Math.trunc(globalXP/100))
+      return (Math.trunc(globalXP/100))
+    }
 
-      if (((Number(globalLvl) + 1) * 100) <= globalXP+20) {
-        setGlobalLvl((state : any) => (Number(state) + 1))
-      }
-
-      if (globalXP/(Number(globalLvl)) == 100) {
-        notifylvlup(globalLvl)
-      }
-      
-      const handleGlobalCourse = () => {
+    const handleGlobalCourse = () => {
       switch (courseCycle.courseCycle) {
         case "HTML":
           return ("1");
@@ -83,9 +78,21 @@ export function HorizontalLinearStepper() {
           return ("5"); 
       }}
 
+    const handleProgress = async (progress : number) => {
+      var userId = sessionStorage.getItem("userId");
+      const num = progress*20
+      let Progress = num.toString()
+      let postProgress = Progress + "%"
+
+      console.log(handleGlobalXP(20))
+      console.log(handleGlobaLvl())
+
+      if ((handleGlobalXP(20)-20)/(handleGlobaLvl()) == 100) {
+        notifylvlup(globalLvl + 1)
+      }
+      
       const handleBadges = () => {
         if (Number(Progress)/20 == 5) {
-          console.log(("badge" + handleGlobalCourse()))
           return (("badge" + handleGlobalCourse()))
         } else {
           return ("-")
@@ -94,7 +101,7 @@ export function HorizontalLinearStepper() {
 
       try {
         const post = await axios.patch(`https://apiautodata.herokuapp.com/user/update/${userId}/${courseId}`,{progress: postProgress, badge: handleBadges()});
-        const postCurrentClass = await axios.patch(`https://apiautodata.herokuapp.com/user/update/${userId}`,{currentClass: handleGlobalCourse(), XP: globalXP.toString(), level: globalLvl.toString()});
+        const postCurrentClass = await axios.patch(`https://apiautodata.herokuapp.com/user/update/${userId}`,{currentClass: handleGlobalCourse(), XP: handleGlobalXP(20).toString(), level: handleGlobaLvl().toString()});
         const data = post.data
         const data2 = postCurrentClass.data
 
@@ -107,6 +114,7 @@ export function HorizontalLinearStepper() {
     }
     
     useEffect(() => {
+      handleGlobalXP(20)
       getCoursesProgress()
     }, []);
 

@@ -23,9 +23,9 @@ function App() {
   const [courseCycle, setCourseCycle] = useState('')
 
   return (
-      <CourseContext.Provider value={{ courseCycle, setCourseCycle }}>
-        <AnimatedRoutes />
-      </CourseContext.Provider>
+    <CourseContext.Provider value={{ courseCycle, setCourseCycle }}>
+      <AnimatedRoutes />
+    </CourseContext.Provider>
   )
 }
 export default App;

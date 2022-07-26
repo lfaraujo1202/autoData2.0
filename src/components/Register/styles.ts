@@ -134,6 +134,14 @@ export const Container = styled.main<AvatarProps>`
         width: 100%;
     }
 
+    .error{
+        color: var(--violet-neon);
+        font-size: 1rem !important;
+        font-weight: 100 !important;
+        position: relative;
+        margin-top: 5px;
+    }
+
     .nameArea span, 
     .nickArea span,
     .emailArea span,
@@ -320,8 +328,6 @@ export const Container = styled.main<AvatarProps>`
             height: auto;
             font-size: 1rem;
         }
-        
-        
     }
     
     @media only screen and (max-width: 1050px) {

@@ -5,13 +5,13 @@ import { Player } from "../components/Player";
 import { DescriptionBox } from "../components/DescriptionBox";
 
 export function PageWatch() {
-    return (
-      <>
-        <Navbar />
-        <DescriptionBox />
-        <Watch />
-        <Player />
-        <GlobalStytle />
-      </>
-    )
-  }
+  return (
+    <>
+      <Navbar />
+      <DescriptionBox />
+      <Watch />
+      <Player />
+      <GlobalStytle />
+    </>
+  )
+}

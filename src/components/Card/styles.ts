@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import type { CardProps } from "./Card";
 
-
 export const Container = styled.div<CardProps>`
-    .card{
+
+    .card {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -17,7 +17,7 @@ export const Container = styled.div<CardProps>`
         margin: 12px;
     }
 
-    .badges{
+    .badges {
         width: 20px;
     }
 

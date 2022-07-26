@@ -1,35 +1,34 @@
-import { Container } from "./styles";
 import type { CardProps } from "./CardProfile";
-import { Link } from "react-router-dom";
-import { createContext, useContext, useState, useEffect } from 'react';
+
 import axios from 'axios';
+
+import { Container } from "./styles";
+import { createContext, useContext, useState, useEffect } from 'react';
 import { Skeleton } from "@mui/material";
 
 export const CourseContext = createContext({} as any)
 
-export function CardProfile({progress = "0%", classname = "-", description = '-', courseimg = 'profile0', buttonName, textUnderBar, lvl="1", exp}: CardProps) {
+export function CardProfile({ progress = "0%", classname = "-", description = '-', courseimg = 'profile0', buttonName, textUnderBar, lvl = "1", exp }: CardProps) {
 
-    const {courseCycle, setCourseCycle} = useContext(CourseContext)
+    const { courseCycle, setCourseCycle } = useContext(CourseContext)
     const [adjustProgress, setAdjustProgress] = useState<any | null>([])
     const [badges, setBadges] = useState<any | null>(null)
     const [isLoading, setIsLoading] = useState(false);
-    const currentclass = Number(progress.replace("%", ''))/20
-    const lvlprogress = Math.round((Number(exp)-Number(lvl)*100)).toString() + "%"   
-    
+    const currentclass = Number(progress.replace("%", '')) / 20
+    const lvlprogress = Math.round((Number(exp) - Number(lvl) * 100)).toString() + "%"
+
     const getBadges = async () => {
         var userId = sessionStorage.getItem("userId");
         const res = await axios.get(`https://apiautodata.herokuapp.com/user/checkId/${userId}`);
-        const BadgeArray : any = []
+        const BadgeArray: any = []
         const InfoArray = res.data.user.progress
         const newArr = InfoArray.map(myFunction)
         setIsLoading(true)
-        function myFunction(num : any) {
+        function myFunction(num: any) {
             BadgeArray.push(num.badge)
         }
         setBadges(BadgeArray)
     }
-
-    
 
     useEffect(() => {
         getBadges()
@@ -45,23 +44,23 @@ export function CardProfile({progress = "0%", classname = "-", description = '-'
             <div className="card">
                 <div className="icon">
 
-                {isLoading ? (
-                    <img src={require(`../../assets/${courseimg}.png`)} alt="Avatar"/>
-                ) : (
-                    <Skeleton variant="circular" width={90} height={90} style={{ marginTop: 0, marginLeft: 15}}/>
-                )}
+                    {isLoading ? (
+                        <img src={require(`../../assets/${courseimg}.png`)} alt="Avatar" />
+                    ) : (
+                        <Skeleton variant="circular" width={90} height={90} style={{ marginTop: 0, marginLeft: 15 }} />
+                    )}
 
                 </div>
                 <h4>{description}</h4>
-                
-                
+
+
                 {isLoading ? (
                     <h3>{classname}</h3>
                 ) : (
                     <h3>Loading...</h3>
                 )}
 
-                
+
                 <span className="currentClassXp"><strong> XP:</strong> {exp} </span>
 
                 {isLoading ? (
@@ -78,20 +77,19 @@ export function CardProfile({progress = "0%", classname = "-", description = '-'
                 <div>
                     <div id="badges">
                         <div>
-                            {badges && badges.map((props : string) => {
+                            {badges && badges.map((props: string) => {
                                 if ((props != "") && (props != "-")) {
-                                return (
-                                    <img key={props[5]} className="badges" src={require(`../../assets/badge${props[5]}.png`)} alt="Icone de react"/>
-                                );
+                                    return (
+                                        <img key={props[5]} className="badges" src={require(`../../assets/badge${props[5]}.png`)} alt="Icone de react" />
+                                    );
                                 }
                             })}
                         </div>
                         {isLoading ? (
-                        <span className="currentclass"><strong>{textUnderBar}</strong> </span>   
+                            <span className="currentclass"><strong>{textUnderBar}</strong> </span>
                         ) : (
                             <span className="progress">Caculando...</span>
                         )}
-                         
                     </div>
                 </div>
             </div>

@@ -5,17 +5,33 @@ interface bannerImg {
     banner?: any;
 }
 
+interface bubbles {
+    speed?: number;
+    left?: number;
+}
+
 export const Container = styled.main<bannerImg>`
 
     background: var(--dark-purple);
-
+    
     .bannerTop {
         background: url(${props => props.banner}) center top fixed;
-        display: flex;
+        display: block;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         height: 500px;
+        transition: height 0.75s ease 0s;
+    }
+
+    .bannerTopAnim {
+        background: url(${props => props.banner}) center top fixed;
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        transition: height 0.75s ease 0s;
     }
 
     a {
@@ -28,6 +44,7 @@ export const Container = styled.main<bannerImg>`
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        padding-top: 150px;
     }
     
     h1 {
@@ -174,4 +191,45 @@ export const StartButton = styled(motion.button)`
 		box-shadow: 0 0 9px 9px var(--background);
 		transition: box-shadow 0.3s ease-in;
 	}
+
+`
+
+export const Bubbles = styled.main<bubbles>`
+    position: absolute;
+    left: ${props => props.left}vw;
+    width: 30px;
+    height: 30px;
+    background: #4fc3dc;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #4fc3dc44,
+    0 0 50px #4fc3dc,
+    0 0 100px #4fc3dc;
+    animation: animate 15s linear infinite;   
+    animation-duration: calc(125s / (${props => props.speed}));
+
+    @keyframes animate {
+        0% { transform: translateY(15vh) scale(0);}
+        100% { transform: translateY(-70vh) scale(0.2);}
+    }
+`
+
+export const Bubbles2 = styled.main<bubbles>`
+    position: absolute;
+    left: ${props => props.left}vw;
+    width: 30px;
+    height: 30px;
+    background: #ff2d75;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #ff2d7544,
+    0 0 50px #ff2d75,
+    0 0 100px #ff2d75;
+    animation: animate 15s linear infinite;   
+    animation-duration: calc(125s / (${props => props.speed}));
+
+    @keyframes animate {
+        0% { transform: translateY(15vh) scale(0);}
+        100% { transform: translateY(-70vh) scale(0.2);}
+    }
 `
