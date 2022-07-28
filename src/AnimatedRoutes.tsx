@@ -2,6 +2,8 @@ import { PageDashboard } from "./Pages/Dashboard";
 import { PageWatch } from "./Pages/Watch";
 import { Home } from "./Pages/Home";
 import { PageLogin } from "./Pages/Login";
+import { PageRecovery } from "./Pages/Recovery";
+import { PageSendToken } from "./Pages/SendToken";
 import { RegisterPage } from "./Pages/Register";
 import { AutoData } from "./Pages/AutoData";
 import axios from 'axios';
@@ -39,6 +41,11 @@ function AnimatedRoutes() {
 
         <Route path="/create" element={<RegisterPage />} />
         <Route path="/login" element={<PageLogin />} />
+
+        <Route path="/sendtoken" element={<PageSendToken />} />
+
+        <Route path="/recovery/:recdata" element={<PageRecovery />} />
+
       </Routes>
     </AnimatePresence>
   )

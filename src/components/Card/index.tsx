@@ -18,7 +18,7 @@ export function Card({ _id, homeCard = false, progress = "0%", classname = "-", 
 
     const getBadges = async () => {
         var userId = sessionStorage.getItem("userId");
-        const res = await axios.get(`https://apiautodata.herokuapp.com/user/checkId/${userId}`);
+        const res = await axios.get(`user/checkId/${userId}`);
         const BadgeArray: any = []
         const InfoArray = res.data.user.progress
         const newArr = InfoArray.map(myFunction)

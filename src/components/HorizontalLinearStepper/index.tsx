@@ -41,7 +41,7 @@ export function HorizontalLinearStepper() {
 
     const getCoursesProgress = async () => {
       var userId = sessionStorage.getItem("userId");
-      const res = await axios.get(`https://apiautodata.herokuapp.com/user/checkId/${userId}`);
+      const res = await axios.get(`user/checkId/${userId}`);
       setUser(res.data.user)
       setGlobalXP(res.data.user.XP)
       setGlobalLvl(res.data.user.level)
@@ -100,8 +100,8 @@ export function HorizontalLinearStepper() {
       }
 
       try {
-        const post = await axios.patch(`https://apiautodata.herokuapp.com/user/update/${userId}/${courseId}`,{progress: postProgress, badge: handleBadges()});
-        const postCurrentClass = await axios.patch(`https://apiautodata.herokuapp.com/user/update/${userId}`,{currentClass: handleGlobalCourse(), XP: handleGlobalXP(20).toString(), level: handleGlobaLvl().toString()});
+        const post = await axios.patch(`user/update/${userId}/${courseId}`,{progress: postProgress, badge: handleBadges()});
+        const postCurrentClass = await axios.patch(`user/update/${userId}`,{currentClass: handleGlobalCourse(), XP: handleGlobalXP(20).toString(), level: handleGlobaLvl().toString()});
         const data = post.data
         const data2 = postCurrentClass.data
 

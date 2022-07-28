@@ -76,33 +76,6 @@ export function Register() {
     }
   }
 
-  // const onSubmit: SubmitHandler<IFormInput> = async data => {
-  //   try {
-  //     const post = await axios.post(
-  //       'user/create',
-  //       {
-  //         name: data.name,
-  //         email: data.email,
-  //         password: data.password,
-  //         Img: "profile" + (Number(avatar) - 1),
-  //         XP: 0,
-  //         level: 0,
-  //         currentClass: "1"
-  //       }
-  //     );
-
-  //     const postdata = post.data;
-  //     sessionStorage.setItem("userToken", postdata.token);
-  //     sessionStorage.setItem("userId", postdata.user._id);
-  //     navigate("/home")
-  //     notifysuccess()
-
-  //   } catch (err) {
-  //     console.log("falha ao criar usuário: ", err)
-  //     notifywrongpass()
-  //   }
-  // }
-
   return (
     <Container avatar={avatar}>
       <div className="containerForm">

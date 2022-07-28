@@ -14,7 +14,7 @@ export function Dashboard() {
 
     const getCoursesProgress = async () => {
         var userId = sessionStorage.getItem("userId");
-        const res = await axios.get(`https://apiautodata.herokuapp.com/user/checkId/${userId}`);
+        const res = await axios.get(`user/checkId/${userId}`);
         setUser(res.data.user.progress)
         setIsLoading(true)
     }
