@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# AutoData Dev 2.0
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![logo of the project](https://github.com/lfaraujo1202/autoData2.0/blob/master/src/assets/readme/baner.png)
 
-## Available Scripts
 
-In the project directory, you can run:
+## Description
 
-### `npm start`
+This application is a web app made with React.JS with TypeScript (front) and NodeJS with JavaScript (back). The app was developed as final project of Tera Full Stack course, and was made to provide a self learning in programing languages with a gamified theme.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000/](http://localhost:3000/) to view it in the browser.
+# Technology
+* React 18
+* TypeScript
+* StyledComponents
+* Node JS
+* MongoDB
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Services Used
+* Github
+* Mailtrap
+* Vercel (deploy front-end)
+* Heroku (deploy back-end)
 
-### `npm test`
+# Main Libs
+* React Router Dom
+* Framer Motion
+* Toastify
+* Mui
+* Axios
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Features
+* Create account (encrypted password)
+* Recovery Password (Recovery Password is prototype stage, working only with mailtrap to intercept token ⚠️)
+* Login System
+* Courses Porgress
+* Badges for finishing courses
+* Exp and level system
+* Courses dashboard
+* Classes with step bars
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How to use
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Create account
+![Create Account](https://github.com/lfaraujo1202/autoData2.0/blob/master/src/assets/readme/login.png?raw=true)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Login to main home page
+![Home](https://github.com/lfaraujo1202/autoData2.0/blob/master/src/assets/readme/home.png?raw=true)
 
-### `npm run eject`
+### Select course (quest)
+![Classes selection](https://github.com/lfaraujo1202/autoData2.0/blob/master/src/assets/readme/quests.png?raw=true)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Access classes content (training)
+![Classes](https://github.com/lfaraujo1202/autoData2.0/blob/master/src/assets/readme/training.png?raw=true)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Links
+https://auto-data2-0.vercel.app/
+https://apiautodata.herokuapp.com/
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Versioning
+Front-end: 2.0.5
+Back-end: 3.0.1
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Author
+Luiz Felipe Gonçalves de Araujo
 
-## Learn More
+In case of sensitive bugs like security vulnerabilities, please contact: luizfelipe1202@gmail.com
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
