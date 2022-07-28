@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from 'react';
 import bgSideImg from '../../assets/img-side-form.png';
 import arrowIco from '../../assets/arrow.svg';
 import { Container } from "./styles";

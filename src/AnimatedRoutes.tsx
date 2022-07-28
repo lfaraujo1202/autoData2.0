@@ -6,10 +6,7 @@ import { PageRecovery } from "./Pages/Recovery";
 import { PageSendToken } from "./Pages/SendToken";
 import { RegisterPage } from "./Pages/Register";
 import { AutoData } from "./Pages/AutoData";
-import axios from 'axios';
 import { Navigate, Routes, Route, useLocation } from "react-router-dom";
-import { CourseContext } from '../src/components/Card';
-import { useState } from "react";
 import { AnimatePresence } from 'framer-motion'
 
 // @ts-ignore

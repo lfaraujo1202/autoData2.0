@@ -12,7 +12,6 @@ import { useParams } from "react-router-dom"
 import 'react-toastify/dist/ReactToastify.css';
 
 export function Recovery() {
-    const notifywrongpass = () => toast.error("Acesso não autorizado! Verique os dados e tente novamente.");
     const notifysuccess = () => toast.success("Senha atualizada com sucesso");
 
     const [lodingLogin, setLoadingLogin] = useState(false);
