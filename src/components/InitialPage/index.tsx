@@ -52,27 +52,27 @@ export function InitialPage() {
                 </div>
 
                 <div className="Bubbles">
-                    <Bubbles2 speed={30} left={2} />
-                    <Bubbles2 speed={45} left={4} />
-                    <Bubbles2 speed={25} left={6} />
-                    <Bubbles2 speed={48} left={8} />
-                    <Bubbles2 speed={78} left={10} />
-                    <Bubbles2 speed={65} left={12} />
-                    <Bubbles2 speed={48} left={14} />
-                    <Bubbles2 speed={35} left={16} />
-                    <Bubbles2 speed={48} left={18} />
-                    <Bubbles2 speed={36} left={20} />
+                    <Bubbles2 speed={30} left={2} color1={"#4fc3dc"} color2={"#4fc3dc44"}/>
+                    <Bubbles2 speed={45} left={4} color1={"#ff2d75"} color2={"#ff2d7544"}/>
+                    <Bubbles2 speed={25} left={6} color1={"#4fc3dc"} color2={"#4fc3dc44"}/>
+                    <Bubbles2 speed={48} left={8} color1={"#ff2d75"} color2={"#ff2d7544"}/>
+                    <Bubbles2 speed={78} left={10} color1={"#4fc3dc"} color2={"#4fc3dc44"}/>
+                    <Bubbles2 speed={65} left={12} color1={"#ff2d75"} color2={"#ff2d7544"}/>
+                    <Bubbles2 speed={48} left={14} color1={"#4fc3dc"} color2={"#4fc3dc44"}/>
+                    <Bubbles2 speed={35} left={16} color1={"#ff2d75"} color2={"#ff2d7544"}/>
+                    <Bubbles2 speed={48} left={18} color1={"#4fc3dc"} color2={"#4fc3dc44"}/>
+                    <Bubbles2 speed={36} left={20} color1={"#ff2d75"} color2={"#ff2d7544"}/>
 
-                    <Bubbles speed={36} left={80} />
-                    <Bubbles speed={48} left={82} />
-                    <Bubbles speed={35} left={84} />
-                    <Bubbles speed={48} left={86} />
-                    <Bubbles speed={65} left={88} />
-                    <Bubbles speed={78} left={90} />
-                    <Bubbles speed={48} left={92} />
-                    <Bubbles speed={25} left={94} />
-                    <Bubbles speed={45} left={96} />
-                    <Bubbles speed={30} left={98} />
+                    <Bubbles speed={36} left={80} color1={"#4fc3dc"} color2={"#4fc3dc44"}/>
+                    <Bubbles speed={48} left={82} color1={"#ff2d75"} color2={"#ff2d7544"}/>
+                    <Bubbles speed={35} left={84} color1={"#4fc3dc"} color2={"#4fc3dc44"}/>
+                    <Bubbles speed={48} left={86} color1={"#ff2d75"} color2={"#ff2d7544"}/>
+                    <Bubbles speed={65} left={88} color1={"#4fc3dc"} color2={"#4fc3dc44"}/>
+                    <Bubbles speed={78} left={90} color1={"#ff2d75"} color2={"#ff2d7544"}/>
+                    <Bubbles speed={48} left={92} color1={"#4fc3dc"} color2={"#4fc3dc44"}/>
+                    <Bubbles speed={25} left={94} color1={"#ff2d75"} color2={"#ff2d7544"}/>
+                    <Bubbles speed={45} left={96} color1={"#4fc3dc"} color2={"#4fc3dc44"}/>
+                    <Bubbles speed={30} left={98} color1={"#ff2d75"} color2={"#ff2d7544"}/>
                 </div>
 
                 <div className="contentInfo">

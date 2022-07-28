@@ -8,6 +8,8 @@ interface bannerImg {
 interface bubbles {
     speed?: number;
     left?: number;
+    color1?: string;
+    color2?: string;
 }
 
 export const Container = styled.main<bannerImg>`
@@ -199,12 +201,12 @@ export const Bubbles = styled.main<bubbles>`
     left: ${props => props.left}vw;
     width: 30px;
     height: 30px;
-    background: #4fc3dc;
+    background: ${props => props.color1};
     margin: 0 4px;
     border-radius: 50%;
-    box-shadow: 0 0 0 10px #4fc3dc44,
-    0 0 50px #4fc3dc,
-    0 0 100px #4fc3dc;
+    box-shadow: 0 0 0 10px ${props => props.color2},
+    0 0 50px ${props => props.color1},
+    0 0 100px ${props => props.color1};
     animation: animate 15s linear infinite;   
     animation-duration: calc(85s / (${props => props.speed}));
 
@@ -220,12 +222,12 @@ export const Bubbles2 = styled.main<bubbles>`
     left: ${props => props.left}vw;
     width: 30px;
     height: 30px;
-    background: #ff2d75;
+    background: ${props => props.color1};
     margin: 0 4px;
     border-radius: 50%;
-    box-shadow: 0 0 0 10px #ff2d7544,
-    0 0 50px #ff2d75,
-    0 0 100px #ff2d75;
+    box-shadow: 0 0 0 10px ${props => props.color2},
+    0 0 50px ${props => props.color1},
+    0 0 100px ${props => props.color1};
     animation: animate2 15s linear infinite;   
     animation-duration: calc(85s / (${props => props.speed}));
 
