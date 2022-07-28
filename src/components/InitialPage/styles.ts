@@ -44,7 +44,7 @@ export const Container = styled.main<bannerImg>`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding-top: 150px;
+        padding-top: 120px;
     }
     
     h1 {
@@ -206,11 +206,12 @@ export const Bubbles = styled.main<bubbles>`
     0 0 50px #4fc3dc,
     0 0 100px #4fc3dc;
     animation: animate 15s linear infinite;   
-    animation-duration: calc(125s / (${props => props.speed}));
+    animation-duration: calc(85s / (${props => props.speed}));
 
     @keyframes animate {
-        0% { transform: translateY(15vh) scale(0);}
-        100% { transform: translateY(-70vh) scale(0.2);}
+        0% { transform: translateX(-5vw) translateY(-50vh) scale(0.5);}
+        30% { transform: translateX(-10vw) translateY(-35vh) scale(0.2);}
+        100% { transform: translateX(-20vw) translateY(0vh) scale(0.0);}
     }
 `
 
@@ -225,11 +226,12 @@ export const Bubbles2 = styled.main<bubbles>`
     box-shadow: 0 0 0 10px #ff2d7544,
     0 0 50px #ff2d75,
     0 0 100px #ff2d75;
-    animation: animate 15s linear infinite;   
-    animation-duration: calc(125s / (${props => props.speed}));
+    animation: animate2 15s linear infinite;   
+    animation-duration: calc(85s / (${props => props.speed}));
 
-    @keyframes animate {
-        0% { transform: translateY(15vh) scale(0);}
-        100% { transform: translateY(-70vh) scale(0.2);}
+    @keyframes animate2 {
+        0% { transform: translateX(5vw) translateY(-50vh) scale(0.5);}
+        30% { transform: translateX(10vw) translateY(-35vh) scale(0.2);}
+        100% { transform: translateX(20vw) translateY(0vh) scale(0.0);}
     }
 `

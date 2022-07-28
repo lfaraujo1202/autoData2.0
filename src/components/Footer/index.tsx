@@ -14,7 +14,7 @@ export function Footer() {
                 </div>
 
                 <div className="socialMedia">
-                    <a href="#" target="_blank">
+                    <a href="https://github.com/lfaraujo1202" target="_blank">
                         <img src={imgGithub} alt="Github" />
                     </a>
 

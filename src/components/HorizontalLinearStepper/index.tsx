@@ -5,16 +5,15 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 import type { CardProps } from "../Card/Card";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useContext } from 'react';
-import { CourseContext } from '../Card';
+import { CourseContext } from '../../contexts/CourseContext'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LinearProgress from '@mui/material/LinearProgress';
-import styled from 'styled-components';
 import { Container } from './styles'
 
 const steps = ['Aula 1', 'Aula 2', 'Aula 3', 'Aula 4', 'Aula 5'];
@@ -34,7 +33,7 @@ export function HorizontalLinearStepper() {
     const [globalLvl, setGlobalLvl] = useState<any | null>(1);
     const [isLoading, setIsLoading] = useState(false);
 
-    const courseCycle = useContext(CourseContext)
+    const course = useContext(CourseContext)
     
     const notifyadvance = (level : number) => toast("+20 exp - A dificuldade da quest aumentou para o level: " + level);
     const notifylvlup = (level : number) => toast.success("Parabéns, você alcançou o level: " + level);
@@ -48,7 +47,7 @@ export function HorizontalLinearStepper() {
       setIsLoading(true);
       
       const filteredCourse = res.data.user.progress.filter((activeCycle : any) => {
-        return activeCycle.classname === courseCycle.courseCycle;
+        return activeCycle.classname === course.course;
       });
       setCourseId(filteredCourse[0]._id)
       setActiveStep((Number((filteredCourse[0].progress).replace("%", '')))/20)
@@ -65,7 +64,7 @@ export function HorizontalLinearStepper() {
     }
 
     const handleGlobalCourse = () => {
-      switch (courseCycle.courseCycle) {
+      switch (course.course) {
         case "HTML":
           return ("1");
         case "CSS3":
@@ -87,12 +86,12 @@ export function HorizontalLinearStepper() {
       console.log(handleGlobalXP(20))
       console.log(handleGlobaLvl())
 
-      if ((handleGlobalXP(20)-20)/(handleGlobaLvl()) == 100) {
+      if ((handleGlobalXP(20)-20)/(handleGlobaLvl()) === 100) {
         notifylvlup(globalLvl + 1)
       }
       
       const handleBadges = () => {
-        if (Number(Progress)/20 == 5) {
+        if (Number(Progress)/20 === 5) {
           return (("badge" + handleGlobalCourse()))
         } else {
           return ("-")
@@ -100,10 +99,8 @@ export function HorizontalLinearStepper() {
       }
 
       try {
-        const post = await axios.patch(`user/update/${userId}/${courseId}`,{progress: postProgress, badge: handleBadges()});
-        const postCurrentClass = await axios.patch(`user/update/${userId}`,{currentClass: handleGlobalCourse(), XP: handleGlobalXP(20).toString(), level: handleGlobaLvl().toString()});
-        const data = post.data
-        const data2 = postCurrentClass.data
+        await axios.patch(`user/update/${userId}/${courseId}`,{progress: postProgress, badge: handleBadges()});
+        await axios.patch(`user/update/${userId}`,{currentClass: handleGlobalCourse(), XP: handleGlobalXP(20).toString(), level: handleGlobaLvl().toString()});
 
       } catch (err) {
           console.log("falha do post de progress: ", err)
@@ -117,10 +114,6 @@ export function HorizontalLinearStepper() {
       handleGlobalXP(20)
       getCoursesProgress()
     }, []);
-
-    const isStepOptional = (step: number) => {
-      return step === 1;
-    };
   
     const isStepSkipped = (step: number) => {
       return skipped.has(step);
@@ -144,20 +137,7 @@ export function HorizontalLinearStepper() {
     const handleBack = () => {
       setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
-  
-    const handleSkip = () => {
-      if (!isStepOptional(activeStep)) {
-        throw new Error("You can't skip a step that isn't optional.");
-      }
-  
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      setSkipped((prevSkipped) => {
-        const newSkipped = new Set(prevSkipped.values());
-        newSkipped.add(activeStep);
-        return newSkipped;
-      });
-    };
-  
+    
     const handleReset = () => {
       setActiveStep(0);
       handleProgress(0);

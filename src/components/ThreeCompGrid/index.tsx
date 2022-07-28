@@ -9,11 +9,11 @@ import { InfoBox } from "../InfoBox";
 import { useEffect, useState, useContext } from "react";
 import { Skeleton } from "@mui/material";
 import { CardProfile } from "../CardProfile";
-import { CourseContext } from '../Card';
+import { CourseContext } from '../../contexts/CourseContext'
 
 export function ThreeCompGrid() {
 
-    const { courseCycle, setCourseCycle } = useContext(CourseContext)
+    const { course, setCourse } = useContext(CourseContext)
     const [progress, setProgress] = useState<CardProps[]>([]);
     const [currentClass, setcurrentClass] = useState<CardProps[]>([]);
     const [profileData, setProfileData] = useState<any | null>([]);
@@ -25,7 +25,7 @@ export function ThreeCompGrid() {
         setProgress(res.data.user.progress)
         setIsLoading(true)
         setcurrentClass(res.data.user.currentClass)
-        setCourseCycle(res.data.user.progress[Number(res.data.user.currentClass) - 1].classname)
+        setCourse(res.data.user.progress[Number(res.data.user.currentClass) - 1].classname)
         setProfileData(res.data.user)
     }
 

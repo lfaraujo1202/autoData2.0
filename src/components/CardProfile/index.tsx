@@ -3,18 +3,15 @@ import type { CardProps } from "./CardProfile";
 import axios from 'axios';
 
 import { Container } from "./styles";
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { Skeleton } from "@mui/material";
 
 export const CourseContext = createContext({} as any)
 
 export function CardProfile({ progress = "0%", classname = "-", description = '-', courseimg = 'profile0', buttonName, textUnderBar, lvl = "1", exp }: CardProps) {
-
-    const { courseCycle, setCourseCycle } = useContext(CourseContext)
     const [adjustProgress, setAdjustProgress] = useState<any | null>([])
     const [badges, setBadges] = useState<any | null>(null)
     const [isLoading, setIsLoading] = useState(false);
-    const currentclass = Number(progress.replace("%", '')) / 20
     const lvlprogress = Math.round((Number(exp) - Number(lvl) * 100)).toString() + "%"
 
     const getBadges = async () => {
@@ -22,7 +19,7 @@ export function CardProfile({ progress = "0%", classname = "-", description = '-
         const res = await axios.get(`user/checkId/${userId}`);
         const BadgeArray: any = []
         const InfoArray = res.data.user.progress
-        const newArr = InfoArray.map(myFunction)
+        InfoArray.map(myFunction)
         setIsLoading(true)
         function myFunction(num: any) {
             BadgeArray.push(num.badge)

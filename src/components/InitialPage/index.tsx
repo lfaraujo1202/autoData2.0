@@ -52,22 +52,27 @@ export function InitialPage() {
                 </div>
 
                 <div className="Bubbles">
-                    <Bubbles speed={45} left={2} />
-                    <Bubbles2 speed={64} left={5} />
-                    <Bubbles speed={30} left={8} />
-                    <Bubbles2 speed={80} left={16} />
-                    <Bubbles speed={54} left={25} />
-                    <Bubbles2 speed={81} left={35} />
-                    <Bubbles speed={54} left={42} />
-                    <Bubbles2 speed={23} left={46} />
-                    <Bubbles speed={20} left={52} />
-                    <Bubbles2 speed={64} left={57} />
-                    <Bubbles speed={54} left={64} />
-                    <Bubbles2 speed={77} left={73} />
-                    <Bubbles speed={86} left={86} />
-                    <Bubbles2 speed={45} left={89} />
-                    <Bubbles speed={43} left={93} />
-                    <Bubbles2 speed={34} left={97} />
+                    <Bubbles2 speed={30} left={2} />
+                    <Bubbles2 speed={45} left={4} />
+                    <Bubbles2 speed={25} left={6} />
+                    <Bubbles2 speed={48} left={8} />
+                    <Bubbles2 speed={78} left={10} />
+                    <Bubbles2 speed={65} left={12} />
+                    <Bubbles2 speed={48} left={14} />
+                    <Bubbles2 speed={35} left={16} />
+                    <Bubbles2 speed={48} left={18} />
+                    <Bubbles2 speed={36} left={20} />
+
+                    <Bubbles speed={36} left={80} />
+                    <Bubbles speed={48} left={82} />
+                    <Bubbles speed={35} left={84} />
+                    <Bubbles speed={48} left={86} />
+                    <Bubbles speed={65} left={88} />
+                    <Bubbles speed={78} left={90} />
+                    <Bubbles speed={48} left={92} />
+                    <Bubbles speed={25} left={94} />
+                    <Bubbles speed={45} left={96} />
+                    <Bubbles speed={30} left={98} />
                 </div>
 
                 <div className="contentInfo">

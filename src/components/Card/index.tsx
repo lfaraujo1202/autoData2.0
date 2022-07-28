@@ -2,15 +2,13 @@ import type { CardProps } from "./Card";
 
 import { Container } from "./styles";
 import { Link } from "react-router-dom";
-import { createContext, useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import { CourseContext } from '../../contexts/CourseContext'
 
 import axios from 'axios';
 
-export const CourseContext = createContext({} as any)
-
 export function Card({ _id, homeCard = false, progress = "0%", classname = "-", title, description = '-', courseimg = 'content1', buttonName, textUnderBar, profilecard = true, lvl = "1", exp }: CardProps) {
-
-    const { courseCycle, setCourseCycle } = useContext(CourseContext)
+    const { course, setCourse } = useContext(CourseContext)
     const [adjustProgress, setAdjustProgress] = useState<any | null>([])
     const [badges, setBadges] = useState<any | null>(null)
     const currentclass = Number(progress.replace("%", '')) / 20
@@ -80,7 +78,7 @@ export function Card({ _id, homeCard = false, progress = "0%", classname = "-", 
                 </div>
                 <>
                     {profilecard ? (
-                        <Link to={`/watch`}><button onClick={() => { setCourseCycle({ classname }.classname) }}>{buttonName}</button></Link>
+                        <Link to={`/watch`}><button onClick={() => { setCourse({ classname }.classname) }}>{buttonName}</button></Link>
                     ) : (
                         <span></span>
                     )}
