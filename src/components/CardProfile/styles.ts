@@ -192,7 +192,6 @@ export const Container = styled.div<CardProps>`
         animation-fill-mode:both;
     }
 
-    
     #myProgress {
         width: 100%;
         background-color: var(--white);
@@ -207,8 +206,8 @@ export const Container = styled.div<CardProps>`
     }
 
     #badges img {
-        width: 45px;
-        height: 45px; 
+        width: 37px;
+        height: 37px; 
     }
 
     .card:hover #myProgress {

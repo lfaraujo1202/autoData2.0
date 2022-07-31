@@ -12,7 +12,6 @@ import { CardProfile } from "../CardProfile";
 import { CourseContext } from '../../contexts/CourseContext'
 
 export function ThreeCompGrid() {
-
     const { course, setCourse } = useContext(CourseContext)
     const [progress, setProgress] = useState<CardProps[]>([]);
     const [currentClass, setcurrentClass] = useState<CardProps[]>([]);

@@ -104,14 +104,75 @@ export const Container = styled.main<bannerImg>`
         }
     }
 
-    /* Responsive */
-    @media only screen and (max-width: 425px) {
-        .iconsContent {
-            display: flex;
-            flex-direction: column;
-        }
+    .boxCardsProd {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
     }
 
+    .boxCardsProd h3 {
+        font-family: 'Baloo 2', sans-serif;
+        color: var(--green);
+        font-weight: bold;
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .cardProd {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .boxInfo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--background);
+    }
+
+    .contentBoxInfo {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background: rgba(29,25,45,0.8);
+        border-radius: 8px;
+
+        max-width: 1000px;
+        height: auto;
+
+        margin: 4rem 2rem;
+        padding: 3rem;
+    }
+
+    .contentBox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 4rem;
+    }
+
+    .contentBox img {
+        width: 72px;
+        height: 74px;
+    }
+
+    .contentBox h3 {
+        color: var(--green);
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    .contentBox span {
+        color: var(--lightpurple);
+        font-size: 1rem;
+        font-weight: normal;
+    }
+    
     @media only screen and (max-width: 768px) {
         .textDescription h3 {
             font-size: 2rem;
@@ -141,8 +202,50 @@ export const Container = styled.main<bannerImg>`
             font-size: 1.4rem;
             text-align: center;
         }
+
+        .Prod4{
+            width: auto;
+        }
+
+        .Prod4 .infoProd {
+            max-width: 340px;
+        }
+
+        .cardProd {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .Prod4 img {
+            width: 340px;
+        }
+
+        .contentBoxInfo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contentBox {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 3rem;
+        }
+    }
+
+        /* Responsive */
+    @media only screen and (max-width: 425px) {
+        .contentBoxInfo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contentBox {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 3rem;
+        }
     }
 `;
+
 
 export const ButtonContainer = styled.div`
 	position: relative;
@@ -187,13 +290,13 @@ export const StartButton = styled(motion.button)`
 		padding: 6px;
 		background-color: var(--green);
 		border-radius: 50%;
+        z-index: 2;
 	}
 
 	&:hover {
 		box-shadow: 0 0 9px 9px var(--background);
 		transition: box-shadow 0.3s ease-in;
 	}
-
 `
 
 export const Bubbles = styled.main<bubbles>`

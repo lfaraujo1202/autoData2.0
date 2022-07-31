@@ -47,9 +47,12 @@ export const Container = styled.main`
     }
 
     .sideFormContainer  {
-        border-width: 2px;
-        border-style: solid;
-        border-image: linear-gradient(to right, var(--green-neon), var(--violet-neon)) 1;
+        border-width: 1px;
+        border: double 2px transparent;
+        border-radius: 10px;
+        background-image: linear-gradient(var(--dark-purple), var(--dark-purple)), radial-gradient(circle at top left, var(--green-neon),var(--violet-neon));
+        background-origin: border-box;
+        background-clip: content-box, border-box;
         margin: 0 5rem;
         width: 360px;
     }
