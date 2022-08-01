@@ -137,6 +137,12 @@ export const Container = styled.main<AvatarProps>`
         width: 100%;
     }
 
+    .toogle {
+        position: absolute;
+        margin-top: 55px;
+        margin-left: 215px;
+    }
+    
     .error{
         color: var(--violet-neon);
         font-size: 1rem !important;
@@ -290,7 +296,7 @@ export const Container = styled.main<AvatarProps>`
             margin-bottom: 2rem;
         }
 
-        .sideFormContainer {
+        .sideFormContainer  {
             margin: 0 2rem;
         }
 

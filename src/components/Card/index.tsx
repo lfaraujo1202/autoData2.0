@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import type { CardProps } from "./Card";
 
 import { Container } from "./styles";
@@ -5,7 +7,6 @@ import { Link } from "react-router-dom";
 import { useContext, useState, useEffect } from 'react';
 import { CourseContext } from '../../contexts/CourseContext'
 
-import axios from 'axios';
 
 export function Card({ _id, homeCard = false, progress = "0%", classname = "-", title, description = '-', courseimg = 'content1', buttonName, textUnderBar, profilecard = true, lvl = "1", exp }: CardProps) {
     const { course, setCourse } = useContext(CourseContext)

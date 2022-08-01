@@ -1,12 +1,13 @@
-import { Container } from "./styles";
 import arrowIco from '../../assets/arrow-ico.svg';
+
+import { Container } from "./styles";
 
 interface ProdProps {
     img: string;
     name: string;
 }
 
-export function ProdCard({img, name}: ProdProps) {
+export function ProdCard({ img, name }: ProdProps) {
     return (
         <Container>
             <div className="Prod">

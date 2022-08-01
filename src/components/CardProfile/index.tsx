@@ -1,6 +1,6 @@
-import type { CardProps } from "./CardProfile";
-
 import axios from 'axios';
+
+import type { CardProps } from "./CardProfile";
 
 import { Container } from "./styles";
 import { createContext, useState, useEffect } from 'react';

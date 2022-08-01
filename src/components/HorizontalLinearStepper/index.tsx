@@ -1,20 +1,22 @@
+import axios from 'axios';
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
+import Stepper from '@mui/material/Stepper';
+import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material';
-import type { CardProps } from "../Card/Card";
-import { useState, useEffect } from "react";
-import axios from 'axios';
-import { useContext } from 'react';
-import { CourseContext } from '../../contexts/CourseContext'
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import type { CardProps } from "../Card/Card";
+
 import LinearProgress from '@mui/material/LinearProgress';
 import { Container } from './styles'
+import { useContext } from 'react';
+import { CourseContext } from '../../contexts/CourseContext'
+import { useState, useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import { createTheme, ThemeProvider } from '@mui/material';
 
 const steps = ['Aula 1', 'Aula 2', 'Aula 3', 'Aula 4', 'Aula 5'];
 
@@ -82,9 +84,6 @@ export function HorizontalLinearStepper() {
       const num = progress*20
       let Progress = num.toString()
       let postProgress = Progress + "%"
-
-      console.log(handleGlobalXP(20))
-      console.log(handleGlobaLvl())
 
       if ((handleGlobalXP(20)-20)/(handleGlobaLvl()) === 100) {
         notifylvlup(globalLvl + 1)

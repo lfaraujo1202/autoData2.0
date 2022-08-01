@@ -11,16 +11,16 @@ type CourseContextType = {
 
 const initialValue = {
     course: "HTML",
-    setCourse: () => {}, 
+    setCourse: () => { },
 }
 
 export const CourseContext = createContext<CourseContextType>(initialValue);
 
-export const CourseContextProvider = ({children} : CourseContextProps ) => {
+export const CourseContextProvider = ({ children }: CourseContextProps) => {
     const [course, setCourse] = useState(initialValue.course);
 
     return (
-        <CourseContext.Provider value={{ course, setCourse}}>
+        <CourseContext.Provider value={{ course, setCourse }}>
             {children}
         </CourseContext.Provider>
     )

@@ -14,7 +14,6 @@ export const Container = styled.main`
         color: var(--violet-neon);
     }
 
-    
     button {
         background: transparent;
         color: var(--violet-neon);
@@ -82,6 +81,12 @@ export const Container = styled.main`
         color: var(--green-neon);
     }
 
+    .toogle {
+        position: absolute;
+        right: 60px;
+        margin-top: 58px;
+    }
+
     form label {
         font-weight: bold;
         font-size: 1.1rem;
@@ -90,6 +95,14 @@ export const Container = styled.main`
 
         display: flex;
         flex-direction: column;
+    }
+
+    .error{
+        color: var(--violet-neon);
+        font-size: 1rem;
+        font-weight: 100;
+        position: relative;
+        margin-top: 5px;
     }
 
     form input {

@@ -128,6 +128,12 @@ export const Container = styled.main`
         text-decoration: none;
         color: var(--violet-neon);
     }
+
+    .toogle {
+        position: absolute;
+        right: 60px;
+        margin-top: 58px;
+    }
     
     .SubmitButton input[type="submit"] {
         background: var(--green);
@@ -227,8 +233,6 @@ export const Container = styled.main`
             height: auto;
             font-size: 1rem;
         }
-        
-        
     }
     
     @media only screen and (max-width: 1050px) {
@@ -240,13 +244,14 @@ export const Container = styled.main`
 
         .contentInfo{
             height: 50%;
+            padding: 0rem 2rem 0rem 2rem;
         }
 
         .formContent {
             display: flex;
             margin: 3rem 0;
             justify-content: center;
-            width: 100%;
+            width: 95%;
             height: 50%;
         }
 
@@ -258,6 +263,9 @@ export const Container = styled.main`
         .contentTextForm {
             display: flex;
             align-items: center;
+        }
+        .sideFormContainer  {
+            width: 300px;
         }
     }
 

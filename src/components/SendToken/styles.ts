@@ -259,6 +259,9 @@ export const Container = styled.main`
             display: flex;
             align-items: center;
         }
+        .sideFormContainer  {
+            width: 300px;
+        }
     }
 
 `;

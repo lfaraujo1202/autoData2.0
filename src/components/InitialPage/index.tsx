@@ -1,5 +1,5 @@
+import axios from 'axios';
 import bannerImg from '../../assets/banner2.jpg';
-import videoStartImg from '../../assets/video-start.png';
 import ProdImg1 from '../../assets/Prod1.png';
 import ProdImg2 from '../../assets/Prod2.png';
 import ProdImg3 from '../../assets/Prod3.png';
@@ -10,20 +10,20 @@ import ico3Img from '../../assets/ico3.svg';
 import ico4Img from '../../assets/ico4.svg';
 import ico5Img from '../../assets/ico5.svg';
 import ico6Img from '../../assets/ico6.svg';
+import videoStartImg from '../../assets/video-start.png';
 import bgBottomImg from '../../assets/banner-bottom.png';
 import AnimatedNumber from '@jhonnold/react-animated-number';
-import axios from 'axios';
 
-import { Container } from "./styles";
-import { StartButton } from "./styles";
-import { ButtonContainer } from "./styles";
-import { ButtonWrapper } from "./styles";
 import { Bubbles } from "./styles";
 import { Bubbles2 } from "./styles";
-import { useNavigate } from 'react-router-dom';
-import { useInView } from 'react-intersection-observer';
-import { useEffect, useState } from 'react';
 import { ProdCard } from '../ProdCard';
+import { useInView } from 'react-intersection-observer';
+import { Container } from "./styles";
+import { useNavigate } from 'react-router-dom';
+import { StartButton } from "./styles";
+import { ButtonWrapper } from "./styles";
+import { ButtonContainer } from "./styles";
+import { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 
 
@@ -170,7 +170,8 @@ export function InitialPage() {
                     style={{
                         backgroundImage: `url(${bgBottomImg})`,
                         backgroundRepeat: "no-repeat",
-                        backgroundAttachment: "fixed"
+                        backgroundAttachment: "fixed",
+                        backgroundPosition: "center top"
                     }}
                 >
                     <div className="contentBoxInfo" ref={countRef}>

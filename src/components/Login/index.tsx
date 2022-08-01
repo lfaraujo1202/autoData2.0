@@ -2,13 +2,16 @@ import axios from "axios";
 import React from 'react';
 import bgSideImg from '../../assets/img-side-form.png';
 import arrowIco from '../../assets/arrow.svg';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Container } from "./styles";
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
-import 'react-toastify/dist/ReactToastify.css';
 
 export function Login() {
     const notifywrongpass = () => toast.error("Acesso não autorizado! Verique os dados e tente novamente.");
@@ -16,6 +19,7 @@ export function Login() {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [value, setValue] = React.useState('');
+    const [toogleEyeVisible, setToogleEyeVisible] = React.useState(true);
     const navigate = useNavigate();
 
     const handleSubmit = async (event: any) => {
@@ -33,7 +37,7 @@ export function Login() {
 
             if (data.msg = 'Autenticação realizada com sucesso') {
                 sessionStorage.setItem("userId", data.id);
-                navigate("/home")               
+                navigate("/home")
             }
 
         } catch (err) {
@@ -49,6 +53,10 @@ export function Login() {
     const handleChangePass = (event: any) => {
         setPass(event.target.value);
     };
+
+    const handleToogle = () => {
+        setToogleEyeVisible(!toogleEyeVisible)
+    }
 
     return (
         <Container>
@@ -85,8 +93,19 @@ export function Login() {
 
                             <label id='passlabel'>
                                 <span>Senha</span>
-                                <input type="password" id="password" name="password" placeholder="" required onChange={handleChangePass} />
-                                <i className="fa-solid fa-eye"></i>
+
+                                {toogleEyeVisible ? (
+                                    <>
+                                        <input type="password" id="password" name="password" placeholder="" required onChange={handleChangePass} />
+                                        <RemoveRedEyeOutlinedIcon sx={{ color: "var(--lightpurple)" }} className="toogle" onClick={handleToogle} />
+                                    </>
+                                ) : (
+                                    <>
+                                        <input type="text" id="password" name="password" placeholder="" required onChange={handleChangePass} />
+                                        <VisibilityOffOutlinedIcon sx={{ color: "var(--lightpurple)" }} className="toogle" onClick={handleToogle} />
+                                    </>
+                                )}
+
                             </label>
 
                             <div className="SubmitButton">

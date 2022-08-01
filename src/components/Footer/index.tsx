@@ -1,9 +1,10 @@
-import { Container } from "./styles";
 import imgLogoFooter from "../../assets/logo.png"
 import imgGithub from "../../assets/github.png"
 import imgLinkedin from "../../assets/linkedin.png"
 import imgInsta from "../../assets/instagram.png"
 import imgTwitter from "../../assets/twitter.png"
+
+import { Container } from "./styles";
 
 export function Footer() {
     return (

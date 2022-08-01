@@ -1,7 +1,8 @@
-import type { CardProps } from "../Card/Card";
 
 import bgHome from '../../assets/bg-home.png';
 import axios from 'axios';
+
+import type { CardProps } from "../Card/Card";
 
 import { Container } from "./styles";
 import { Card } from "../Card";
@@ -29,7 +30,8 @@ export function ThreeCompGrid() {
     }
 
     useEffect(() => {
-        var userToken = sessionStorage.getItem("userToken");
+        var userToken = "Bearer " + sessionStorage.getItem("userToken");
+        axios.defaults.headers.common['authorization'] = userToken;
         getCoursesProgress()
     }, []);
 

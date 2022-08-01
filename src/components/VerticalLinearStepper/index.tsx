@@ -1,13 +1,13 @@
-import type { CardProps } from "../Card/Card";
-
-import axios from 'axios';
 import * as React from 'react';
+import axios from 'axios';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+
+import type { CardProps } from "../Card/Card";
 
 import { createTheme, ThemeProvider } from '@mui/material';
 import { useState, useEffect } from "react";
@@ -62,9 +62,6 @@ export function VerticalLinearStepper() {
 
     setGlobalXP((state: any) => (Number(state) + 20))
 
-    // console.log(globalXP)
-    // console.log(globalLvl)
-
     if (((Number(globalLvl) + 1) * 100) <= globalXP + 20) {
       setGlobalLvl((state: any) => (Number(state) + 1))
     }
@@ -90,7 +87,6 @@ export function VerticalLinearStepper() {
 
     const handleBadges = () => {
       if (Number(Progress) / 20 === 5) {
-        console.log(("badge" + handleGlobalCourse()))
         return (("badge" + handleGlobalCourse()))
       } else {
         return ("-")

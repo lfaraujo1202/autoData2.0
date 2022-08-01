@@ -1,7 +1,7 @@
 import { Container } from "./styles";
-import { HorizontalLinearStepper } from "../HorizontalLinearStepper";
-import { VerticalLinearStepper } from "../VerticalLinearStepper";
 import { useState, useEffect } from "react";
+import { VerticalLinearStepper } from "../VerticalLinearStepper";
+import { HorizontalLinearStepper } from "../HorizontalLinearStepper";
 
 export function Watch() {
 

@@ -26,7 +26,6 @@ export function SendToken() {
                 }
             );
             const data = post.data;
-            console.log(data)
 
             if (post.data = 'password reset link sent to your email account') {
                 notifysuccess()

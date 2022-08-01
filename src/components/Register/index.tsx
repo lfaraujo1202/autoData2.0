@@ -1,28 +1,23 @@
 import { Container } from "./styles";
-import { useForm, Resolver, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
-import axios from "axios";
 import { yupResolver } from '@hookform/resolvers/yup';
+
+import React from 'react';
+import axios from "axios";
 import * as yup from "yup";
+import arrowIco from '../../assets/arrow.svg';
 import profile1 from "../../assets/profile1.png"
 import profile2 from "../../assets/profile2.png"
 import profile3 from "../../assets/profile3.png"
 import profile4 from "../../assets/profile4.png"
-
 import bgSideImg from '../../assets/img-side-form.png';
-import arrowIco from '../../assets/arrow.svg';
-
-interface IFormInput {
-  nick: string;
-  name: string;
-  email: string;
-  password: number;
-}
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 const schema = yup.object({
   name: yup.string().required("Nome obrigatório!"),
@@ -35,6 +30,10 @@ const schema = yup.object({
 export function Register() {
   const notifysuccess = () => toast.success("Acesso criado com sucesso");
   const notifywrongpass = () => toast.error("Falha ao criar usuário!");
+
+  const [toogleEyeVisible, setToogleEyeVisible] = React.useState(true);
+  const [toogleEyeVisible2, setToogleEyeVisible2] = React.useState(true);
+
   const navigate = useNavigate();
   const [avatar, SetAvatar] = useState("2");
   const {
@@ -74,6 +73,14 @@ export function Register() {
       console.log("falha ao criar usuário: ", err)
       notifywrongpass()
     }
+  }
+
+  const handleToogle = () => {
+    setToogleEyeVisible(!toogleEyeVisible)
+  }
+
+  const handleToogle2 = () => {
+      setToogleEyeVisible2(!toogleEyeVisible2)
   }
 
   return (
@@ -124,13 +131,33 @@ export function Register() {
               <div className="areaImputOne">
                 <div className="passwordArea">
                   <span>Senha:</span>
-                  <input type="password" {...register("password", { required: true, maxLength: 20 })} />
+                    {toogleEyeVisible ? (
+                        <>
+                            <input type="password" {...register("password", { required: true, maxLength: 20 })} />
+                            <RemoveRedEyeOutlinedIcon sx={{ color: "var(--lightpurple)"}} className="toogle" onClick={handleToogle}/>
+                        </>
+                    ) : (
+                        <>
+                            <input type="text" {...register("password", { required: true, maxLength: 20 })} />
+                            <VisibilityOffOutlinedIcon sx={{ color: "var(--lightpurple)"}} className="toogle"onClick={handleToogle}/>
+                        </>
+                    )}
                   {errors.password && <span className="error">{errors.password?.message}</span>}
                 </div>
 
                 <div className="repeatArea">
-                  <span>Repita sua senha:</span>
-                  <input type="password" {...register("confirmpassword", { required: true, maxLength: 20 })} />
+                  <span>Confirme sua senha:</span>
+                    {toogleEyeVisible2 ? (
+                        <>
+                            <input type="password" {...register("confirmpassword", { required: true, maxLength: 20 })} />
+                            <RemoveRedEyeOutlinedIcon sx={{ color: "var(--lightpurple)"}} className="toogle" onClick={handleToogle2}/>
+                        </>
+                    ) : (
+                        <>
+                            <input type="text" {...register("confirmpassword", { required: true, maxLength: 20 })} />
+                            <VisibilityOffOutlinedIcon sx={{ color: "var(--lightpurple)"}} className="toogle"onClick={handleToogle2}/>
+                        </>
+                    )}
                   {errors.confirmpassword && <span className="error">{errors.confirmpassword?.message}</span>}
                 </div>
               </div>
